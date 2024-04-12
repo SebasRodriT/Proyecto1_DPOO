@@ -3,6 +3,10 @@ package uniandes.dpoo.galeria.modelo.plataforma;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import uniandes.dpoo.galeria.modelo.Pieza;
+import uniandes.dpoo.galeria.modelo.usuario.Comprador;
+import uniandes.dpoo.galeria.modelo.usuario.Usuario;
+
 public class Plataforma {
 
 	private ArrayList<String> usuarios = new ArrayList<String>();

@@ -10,7 +10,7 @@ public class Subasta {
 	private ArrayList<String> piezasSubastadas = new ArrayList<String>();
 	private ArrayList<String> piezasASubastar = new ArrayList<String>();
 	private ArrayList<String> usuariosSubasta = new ArrayList<String>();
-	private HashMap<String, HashMap<Comprador, Integer>> ofertasAceptadasSubastas = new HashMap<String, HashMap<Comprador, Integer>>();
+	private HashMap<String, HashMap<String, Integer>> ofertasAceptadasSubastas = new HashMap<String, HashMap<String, Integer>>();
 
 	public Subasta() {}
 	
@@ -21,7 +21,7 @@ public class Subasta {
 	public void agregarPiezaASubastar(Pieza pieza) {
 		
 		if (!ofertasAceptadasSubastas.containsKey(pieza.getNombre())) {
-			HashMap<String, HashMap<Comprador, Integer>> ofertasPieza = new HashMap<String, HashMap<Comprador, Integer>>();
+			HashMap<String, HashMap<String, Integer>> ofertasPieza = new HashMap<String, HashMap<String, Integer>>();
 			ofertasAceptadasSubastas.put(pieza.getNombre(), ofertasPieza);
 		}
 	}
@@ -29,16 +29,15 @@ public class Subasta {
 	public void agregarOfertaSubasta(Usuario usuario, int precio, Pieza pieza) {
 		
 		if (ofertasAceptadasSubastas.containsKey(pieza.getNombre())){
-			HashMap<String, HashMap<Comprador, Integer>> ofertasPieza = ofertasAceptadasSubastas.get(pieza.getNombre());
-			Comprador comprador = (Comprador) usuario;
-			ofertasPieza.put(comprador, precio);
+			HashMap<String, Integer> ofertasPieza = ofertasAceptadasSubastas.get(pieza.getNombre());
+			ofertasPieza.put(usuario.getNombre(), precio);
 			ofertasAceptadasSubastas.put(pieza.getNombre(), ofertasPieza);
 		}
 		
 		
 	}
 	
-	public HashMap<String, HashMap<Comprador, Integer>> getOfertas(){
+	public HashMap<String, HashMap<String, Integer>> getOfertas(){
 		return this.ofertasAceptadasSubastas;
 	}
 	

@@ -1,6 +1,7 @@
 package uniandes.dpoo.galeria.modelo;
 
 public class Fotografia {
+	//Pruueba
 	private String calidad;
 	private boolean color;
 	

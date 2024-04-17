@@ -6,7 +6,7 @@ public class Artista {
 	
 	private String nombre;
 	private String tipoArtista;
-	private ArrayList<String> piezas = new ArrayList<String>();
+	private ArrayList<Pieza> piezas = new ArrayList<Pieza>();
 	
 	
 	public Artista(String nombre, String tipoArtista) {
@@ -25,6 +25,6 @@ public class Artista {
 	}
 	
 	public void agregarPieza(Pieza pieza) {
-		
+		this.piezas.add(pieza);
 	}
 }

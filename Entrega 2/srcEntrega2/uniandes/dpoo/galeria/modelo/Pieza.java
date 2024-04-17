@@ -3,14 +3,14 @@ package uniandes.dpoo.galeria.modelo;
 import java.util.ArrayList;
 
 public class Pieza {
-	private boolean vendida;
-	private String tituloObra;
-	private int año;
-	private String lugarCreacion;
-	private Artista autor;
-	private boolean exhibido;
-	private String tematica;
-	private ArrayList<String> inventarioPiezas = new ArrayList<String>();
+	protected boolean vendida;
+	protected String tituloObra;
+	protected int año;
+	protected String lugarCreacion;
+	protected Artista autor;
+	protected boolean exhibido;
+	protected String tematica;
+	private ArrayList<Pieza> inventarioPiezas = new ArrayList<Pieza>();
 	
 	public Pieza(boolean vendida ,String tituloObra, int año,String lugarCreacion, Artista autor, boolean exhibido, String tematica) {
 		this.vendida = vendida;
@@ -50,5 +50,36 @@ public class Pieza {
 		return tematica;
 	}
 	
+	public void marcarComoVendida() {
+		vendida = true;
+	}
 	
+	public void agregarPiezainventario(Pieza pieza) {
+    	this.inventarioPiezas.add(pieza);
+    }
+    
+    public void eliminarPiezainventario(Pieza pieza) {
+    	this.inventarioPiezas.remove(pieza);
+    }
+	
+	public void buscarPiezaInventario(Pieza pieza) {
+		Pieza piezaEncontrada = null;
+    	String tituloObra = pieza.getTituloObra();
+    	for (int i = 0; i < inventarioPiezas.size(); i++) {
+    	    Pieza piezaLista = inventarioPiezas.get(i);
+    	    if (piezaLista.getTituloObra().equals(tituloObra)) {
+    	        piezaEncontrada = piezaLista;
+    	        break; // Terminamos la búsqueda si encontramos la pieza
+    	    }
+    	}
+
+    	// Verificar si se encontró la pieza y mostrar el resultado
+    	if (piezaEncontrada != null) {
+    	    System.out.println("Pieza encontrada: " + piezaEncontrada.getTituloObra());
+    	    System.out.println("Autor pieza encontrada: " + piezaEncontrada.getAutor().getNombre());
+    	    System.out.println("Año pieza encontrada: " + piezaEncontrada.getAño());
+    	} else {
+    	    System.out.println("Pieza no encontrada");
+    	}
+	}
 }

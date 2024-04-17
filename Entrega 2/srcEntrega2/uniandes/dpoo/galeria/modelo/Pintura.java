@@ -1,12 +1,13 @@
 package uniandes.dpoo.galeria.modelo;
 
-public class Pintura {
+public class Pintura extends Pieza{
 	private String tecnica;
 	private String estilo;
 	private double alto;
 	private double ancho;
 	
-	public Pintura(String tecnica, String estilo, double alto, double ancho) {
+	public Pintura(String tecnica, String estilo, double alto, double ancho, boolean vendida ,String tituloObra, int año,String lugarCreacion, Artista autor, boolean exhibido, String tematica) {
+		super(vendida, tituloObra, año, lugarCreacion, autor, exhibido, tematica);
 		this.tecnica = tecnica;
 		this.estilo = estilo;
 		this.alto = alto;

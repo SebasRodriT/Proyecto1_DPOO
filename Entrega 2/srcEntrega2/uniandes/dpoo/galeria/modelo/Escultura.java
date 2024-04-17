@@ -2,7 +2,7 @@ package uniandes.dpoo.galeria.modelo;
 
 import java.util.ArrayList;
 
-public class Escultura {
+public class Escultura extends Pieza{
 	private double alto;
 	private double ancho;
 	private double peso;
@@ -10,7 +10,8 @@ public class Escultura {
 	private ArrayList<String> materialesDeConstruccion = new ArrayList<String>();
 	private ArrayList<String> elementosDeInstalacion = new ArrayList<String>();
 	
-	public Escultura(double alto, double ancho, double peso, boolean necesitaElectricidad) {
+	public Escultura(double alto, double ancho, double peso, boolean necesitaElectricidad, boolean vendida ,String tituloObra, int año,String lugarCreacion, Artista autor, boolean exhibido, String tematica) {
+		super(vendida, tituloObra, año, lugarCreacion, autor, exhibido, tematica);
 		this.alto = alto;
 		this.ancho = ancho;
 		this.peso = peso;
@@ -33,5 +34,15 @@ public class Escultura {
 		return necesitaElectricidad;
 	}
 	
+	public void marcarVerdaderaElectricidad() {
+		necesitaElectricidad = true;
+	}
 	
+	public void agregarMaterialDeConstruccion(String material) {
+		this.materialesDeConstruccion.add(material);
+	}
+	
+	public void agregarElementoInstalacion(String elemento) {
+		this.elementosDeInstalacion.add(elemento);
+	}
 }

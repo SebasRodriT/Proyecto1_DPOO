@@ -56,4 +56,9 @@ public class Plataforma {
 	public void agregarPago(Comprador comprador, int precio) {
 		
 	}
+
+
+	public ArrayList<Usuario> getUsuarios() {
+		return usuarios;
+	}
 }

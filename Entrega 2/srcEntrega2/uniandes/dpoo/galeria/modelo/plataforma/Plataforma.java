@@ -11,7 +11,7 @@ import uniandes.dpoo.galeria.modelo.usuario.Usuario;
 
 public class Plataforma {
 
-	private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+	private static ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 	private HashMap<String, ArrayList<String>> mapaPagos = new HashMap<String, ArrayList<String>>();
 	private Subasta subasta;
 	
@@ -58,7 +58,7 @@ public class Plataforma {
 	}
 
 
-	public ArrayList<Usuario> getUsuarios() {
+	public static ArrayList<Usuario> getUsuarios() {
 		return usuarios;
 	}
 }

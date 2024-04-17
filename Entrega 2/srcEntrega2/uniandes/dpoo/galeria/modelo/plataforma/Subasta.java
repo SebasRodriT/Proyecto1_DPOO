@@ -8,7 +8,6 @@ import uniandes.dpoo.galeria.modelo.usuario.Usuario;
 
 public class Subasta {
 	private ArrayList<String> piezasSubastadas = new ArrayList<String>();
-	private ArrayList<String> piezasASubastar = new ArrayList<String>();
 	private ArrayList<String> usuariosSubasta = new ArrayList<String>();
 	private HashMap<String, HashMap<String, Integer>> ofertasAceptadasSubastas = new HashMap<String, HashMap<String, Integer>>();
 
@@ -20,18 +19,18 @@ public class Subasta {
 	
 	public void agregarPiezaASubastar(Pieza pieza) {
 		
-		if (!ofertasAceptadasSubastas.containsKey(pieza.getNombre())) {
-			HashMap<String, HashMap<String, Integer>> ofertasPieza = new HashMap<String, HashMap<String, Integer>>();
-			ofertasAceptadasSubastas.put(pieza.getNombre(), ofertasPieza);
+		if (!ofertasAceptadasSubastas.containsKey(pieza.getTituloObra())) {
+			HashMap<String, Integer> ofertasPieza = new HashMap<String,  Integer>();
+			ofertasAceptadasSubastas.put(pieza.getTituloObra(), ofertasPieza);
 		}
 	}
 	
 	public void agregarOfertaSubasta(Usuario usuario, int precio, Pieza pieza) {
 		
-		if (ofertasAceptadasSubastas.containsKey(pieza.getNombre())){
+		if (ofertasAceptadasSubastas.containsKey(pieza.getTituloObra())){
 			HashMap<String, Integer> ofertasPieza = ofertasAceptadasSubastas.get(pieza.getNombre());
 			ofertasPieza.put(usuario.getNombre(), precio);
-			ofertasAceptadasSubastas.put(pieza.getNombre(), ofertasPieza);
+			ofertasAceptadasSubastas.put(pieza.getTituloObra(), ofertasPieza);
 		}
 		
 		

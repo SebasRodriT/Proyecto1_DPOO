@@ -10,6 +10,10 @@ public class Pieza {
 	protected Artista autor;
 	protected boolean exhibido;
 	protected String tematica;
+	//Agregar uml y get
+	protected int precio;
+	
+
 	private ArrayList<Pieza> inventarioPiezas = new ArrayList<Pieza>();
 	
 	public Pieza(boolean vendida ,String tituloObra, int año,String lugarCreacion, Artista autor, boolean exhibido, String tematica) {
@@ -48,6 +52,10 @@ public class Pieza {
 
 	public String getTematica() {
 		return tematica;
+	}
+	
+	public int getPrecio() {
+		return precio;
 	}
 	
 	public void marcarComoVendida() {

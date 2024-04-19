@@ -6,8 +6,8 @@ public class Pintura extends Pieza{
 	private double alto;
 	private double ancho;
 	
-	public Pintura(String tecnica, String estilo, double alto, double ancho, boolean vendida ,String tituloObra, int año,String lugarCreacion, Artista autor, boolean exhibido, String tematica) {
-		super(vendida, tituloObra, año, lugarCreacion, autor, exhibido, tematica);
+	public Pintura(String tecnica, String estilo, double alto, double ancho, boolean vendida ,String tituloObra, int año,String lugarCreacion, Artista autor, boolean exhibido, String tematica, int precio) {
+		super(vendida, tituloObra, año, lugarCreacion, autor, exhibido, tematica, precio);
 		this.tecnica = tecnica;
 		this.estilo = estilo;
 		this.alto = alto;

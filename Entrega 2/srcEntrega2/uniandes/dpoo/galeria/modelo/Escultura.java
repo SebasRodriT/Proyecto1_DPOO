@@ -10,8 +10,8 @@ public class Escultura extends Pieza{
 	private ArrayList<String> materialesDeConstruccion = new ArrayList<String>();
 	private ArrayList<String> elementosDeInstalacion = new ArrayList<String>();
 	
-	public Escultura(double alto, double ancho, double peso, boolean necesitaElectricidad, boolean vendida ,String tituloObra, int año,String lugarCreacion, Artista autor, boolean exhibido, String tematica) {
-		super(vendida, tituloObra, año, lugarCreacion, autor, exhibido, tematica);
+	public Escultura(double alto, double ancho, double peso, boolean necesitaElectricidad, boolean vendida ,String tituloObra, int año,String lugarCreacion, Artista autor, boolean exhibido, String tematica, int precio) {
+		super(vendida, tituloObra, año, lugarCreacion, autor, exhibido, tematica, precio);
 		this.alto = alto;
 		this.ancho = ancho;
 		this.peso = peso;

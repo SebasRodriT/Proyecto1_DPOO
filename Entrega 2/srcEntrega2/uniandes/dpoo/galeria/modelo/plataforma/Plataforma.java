@@ -22,9 +22,15 @@ public class Plataforma {
 	}
 	
 	
-	public void vender(Comprador comprador, Pieza pieza) {
+	public void vender(Comprador comprador, Pieza pieza) throws Exception {
 		if (comprador.getSaldo() >= pieza.getPrecio()) {
-			
+			int precio = pieza.getPrecio();
+			Pago pago = new Pago(comprador, precio);
+	pieza.marcarComoVendida();		
+		}
+		
+		else {
+			throw new Exception ("Saldo insuficiente para comprar la pieza");
 		}
 	}
 	

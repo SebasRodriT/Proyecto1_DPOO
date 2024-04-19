@@ -62,10 +62,6 @@ public class Pieza {
 		vendida = true;
 	}
 	
-	public void marcarDevolucion() {
-		vendida = false;
-	}
-	
 	public void agregarPiezainventario(Pieza pieza) {
     	this.inventarioPiezas.add(pieza);
     }

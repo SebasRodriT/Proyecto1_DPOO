@@ -80,7 +80,7 @@ public class Usuario {
                     case 1:
                         System.out.println("Ingrese el nombre de la pieza que desea comprar:");
                         String nombrePieza = scanner.nextLine();
-                        HashMap<Pieza,String> listapieza = comprador.getlistapiez();
+                        HashMap<Pieza,String> listapieza = comprador.getlistapieza();
                         Pieza pie = null;
                         for (Pieza key : listapieza.keySet()) {
                             if (listapieza.get(key).equals(nombrePieza)){
@@ -114,7 +114,7 @@ public class Usuario {
             System.out.println("Inicio de sesión exitoso en el propietario.");
             boolean salir = false;
             Propietario propietario = new Propietario(nombre, identificacion, edad, nombreUsuario, password, edad, nombre);
-            
+
 
             while (!salir) {
                 System.out.println("Seleccione una opción:");

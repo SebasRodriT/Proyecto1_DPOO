@@ -7,8 +7,8 @@ public class Dibujo extends Pieza{
 	private String estilo;
 	private String tamaño;
 	
-	public Dibujo(String medio,String tecnica,String estilo,String tamaño, boolean vendida ,String tituloObra, int año,String lugarCreacion, Artista autor, boolean exhibido, String tematica) {
-		super(vendida, tituloObra, año, lugarCreacion, autor, exhibido, tematica);
+	public Dibujo(String medio,String tecnica,String estilo,String tamaño, boolean vendida ,String tituloObra, int año,String lugarCreacion, Artista autor, boolean exhibido, String tematica, int precio) {
+		super(vendida, tituloObra, año, lugarCreacion, autor, exhibido, tematica, precio);
 		this.medio = medio;
 		this.tecnica = tecnica;
 		this.estilo = estilo;

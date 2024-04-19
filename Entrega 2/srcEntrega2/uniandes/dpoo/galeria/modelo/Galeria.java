@@ -3,12 +3,17 @@ package uniandes.dpoo.galeria.modelo;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import uniandes.dpoo.galeria.modelo.plataforma.Plataforma;
+import uniandes.dpoo.galeria.modelo.usuario.Comprador;
+import uniandes.dpoo.galeria.modelo.usuario.Usuario;
+
 public class Galeria {
 	private String ubicacion;
 	private int cantidadPiezas;
 	private ArrayList<Pieza> piezasExhibidas = new ArrayList<Pieza>();
     private ArrayList<Pieza> piezasBodega = new ArrayList<Pieza>();
-    private HashMap<String, Pieza> historicoPiezas = new HashMap<String, Pieza>();
+    private ArrayList<Pieza> historicoPiezas = new ArrayList<Pieza>();
+    private Plataforma plataforma = new Plataforma();
 
     public Galeria(String ubicacion, int cantidadPiezas) {
     	this.ubicacion = ubicacion;
@@ -24,8 +29,21 @@ public class Galeria {
 	}
     
     public void verificarComprador(Comprador comprador) {
-    	String nombreUsuario = usuario.
-    	if ()
+    	ArrayList<Usuario> usuarios = plataforma.getUsuarios();
+    	boolean encontrado = false;
+        
+        for (int i = 0; i < usuarios.size(); i++) {
+            if (usuarios.get(i).getNombre().equals(comprador.getNombre())) {
+                encontrado = true;
+                break;
+            }
+        }
+        
+        if (encontrado) {
+            System.out.println("El comprador está en la lista de usuarios.");
+        } else {
+            System.out.println("El comprador NO está en la lista de usuarios.");
+        }
     	
     }
     
@@ -38,7 +56,7 @@ public class Galeria {
     }
     
     public void agregarPiezaHistorico(Pieza pieza) {
-    	//To do:
+    	this.historicoPiezas.add(pieza);
     	
     }
     
@@ -93,6 +111,23 @@ public class Galeria {
     }
     
     public void buscarPiezahistorico(Pieza pieza) {
-    	
+    	Pieza piezaEncontrada = null;
+    	String tituloObra = pieza.getTituloObra();
+    	for (int i = 0; i < piezasBodega.size(); i++) {
+    	    Pieza piezaLista = piezasBodega.get(i);
+    	    if (piezaLista.getTituloObra().equals(tituloObra)) {
+    	        piezaEncontrada = piezaLista;
+    	        break; // Terminamos la búsqueda si encontramos la pieza
+    	    }
+    	}
+
+    	// Verificar si se encontró la pieza y mostrar el resultado
+    	if (piezaEncontrada != null) {
+    	    System.out.println("Pieza encontrada: " + piezaEncontrada.getTituloObra());
+    	    System.out.println("Autor pieza encontrada: " + piezaEncontrada.getAutor().getNombre());
+    	    System.out.println("Año pieza encontrada: " + piezaEncontrada.getAño());
+    	} else {
+    	    System.out.println("Pieza no encontrada");
+    	}
     }
 }

@@ -11,15 +11,17 @@ public class Comprador extends Usuario {
     private int numeroTelefono;
     private String correo;
     private int valorMaxCompras;
-    private HashMap<String, ArrayList<String>> piezasCompradas;
+    private int saldo;
+    private HashMap<String, String> piezasCompradas;
 
     public Comprador(String nombre, int identificacion, int edad, String nombreUsuario, String password,
-                     int numeroTelefono, String correo, int valorMaxCompras) {
+                     int numeroTelefono, String correo, int valorMaxCompras, int saldo) {
         super(nombre, identificacion, edad, nombreUsuario, password);
         this.numeroTelefono = numeroTelefono;
         this.correo = correo;
         this.valorMaxCompras = valorMaxCompras;
         this.piezasCompradas = new HashMap<>();
+        this.saldo = saldo;
     }
 
     public int getNumeroTelefono() {
@@ -52,14 +54,22 @@ public class Comprador extends Usuario {
             System.out.println("La compra excede el valor máximo de compras permitido.");
         }
     }
+     
+    public void actualizarSaldo(int valor) {
+    	saldo-= valor;
+    }
+    public void agregarPieza(Pieza pieza) {
+    	String nombre = pieza.getTituloObra();
+    	String valor = String.valueOf(pieza.getPrecio());
+    	piezasCompradas.put(nombre, valor);
+    	valorMaxCompras -= pieza.getPrecio();
+    }
+  
 
     private void registrarCompra(String idPieza, Pieza pieza) {
        
-        ArrayList<String> detallesCompra = new ArrayList<>();
-        detallesCompra.add(pieza.getTituloObra());
-        detallesCompra.add(String.valueOf(pieza.getPrecio())); 
-       
-        piezasCompradas.put(idPieza, detallesCompra);
-       
+    	String valor = String.valueOf(pieza.getPrecio());
+        piezasCompradas.put(idPieza, valor);
         valorMaxCompras -= pieza.getPrecio();
+        
     }}

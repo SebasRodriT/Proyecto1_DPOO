@@ -27,7 +27,7 @@ public class CajeroGaleria extends Empleado {
       
          plataforma.vender(comprador, pieza);
          int precio = pieza.getPrecio();    
-         Pago pago = new Pago(comprador, precio, tipoPagoString);
+         Pago pago = new Pago(comprador, precio);
          
            
             registroPagos.put(idPago, tipoPagoString);

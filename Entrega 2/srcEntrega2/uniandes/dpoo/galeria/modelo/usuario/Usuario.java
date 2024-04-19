@@ -14,6 +14,8 @@ public class Usuario {
     protected String nombreUsuario;
     protected String password;
     private String road;
+    private Subasta subasta = new Subasta();
+
 
     public Usuario(String nombre, int identificacion, int edad, String nombreUsuario, String password, String road) {
         this.nombre = nombre;
@@ -46,13 +48,12 @@ public class Usuario {
     }
 
   
-   public void ofertarSubasta(Pieza pieza, Usuario usuario) {
-        Subasta subasta = new Subasta(pieza);
-
+   public void ofertarSubasta(Pieza pieza, Usuario usuario, int precio) {
+        
        
         
-        if (subasta != null) {
-            subasta.agregarOfertaSubasta(usuario, pieza.getPrecio(), pieza);
+        if (subasta != null && precio>=pieza.getPrecio()) {
+            subasta.agregarOfertaSubasta(usuario, precio, pieza);
         }
     }
 

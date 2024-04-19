@@ -49,37 +49,12 @@ public class Plataforma {
 		
 		
 	} 
-	public void agregarUsuario() {
-
-		Scanner scanner = new Scanner(System.in);
-
-		System.out.println("Por favor ingrese su nombre:");
-        String nombre = scanner.nextLine();
-
-        System.out.println("Por favor ingrese su identificación:");
-        int identificacion = scanner.nextInt(); 
-        scanner.nextLine(); 
-
-        System.out.println("Por favor ingrese su edad:");
-        int edad = scanner.nextInt();
-        scanner.nextLine(); 
-
-        System.out.println("Por favor elija un nombre de usuario:");
-        String nombreUsuario = scanner.nextLine();
-
-        System.out.println("Por favor ingrese su contraseña:");
-        String password = scanner.nextLine();
-
-		System.out.println("Por favor ingrese el tipo de usuario:");
-        String road = scanner.nextLine();
-
-        Usuario usuario = new Usuario(nombre, identificacion, edad, nombreUsuario, password, road);
-
-		
+	
+	public void registrarUsuario (Usuario usuario) {
 		usuarios.add(usuario);
-		scanner.close();
-		
 	}
+		
+	
 	public void agregarPago(Comprador comprador, int precio) {
 		
 	}

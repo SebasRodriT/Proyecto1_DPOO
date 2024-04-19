@@ -99,5 +99,12 @@ public class Comprador extends Usuario {
         return valor;
         
     }
+    
+    public void agregarPieza(Pieza pieza) {
+    	String nombre = pieza.getTituloObra();
+    	Integer valor = (Integer)pieza.getPrecio();
+    	piezasCompradas.put(nombre, valor);
+    	valorMaxCompras -= pieza.getPrecio();
+    }
 
 }

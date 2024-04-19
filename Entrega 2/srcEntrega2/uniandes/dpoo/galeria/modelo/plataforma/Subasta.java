@@ -10,10 +10,10 @@ public class Subasta {
 	private ArrayList<String> piezasSubastadas = new ArrayList<String>();
 	private ArrayList<String> usuariosSubasta = new ArrayList<String>();
 	private HashMap<String, HashMap<String, Integer>> ofertasAceptadasSubastas = new HashMap<String, HashMap<String, Integer>>();
+	private Pieza pieza;
 
-	public Subasta() {}
-	
-	public void agregarPiezaSubastada(Pieza pieza) {
+	public Subasta(Pieza pieza) {
+		this.pieza = pieza;
 		
 	}
 	
@@ -28,7 +28,7 @@ public class Subasta {
 	public void agregarOfertaSubasta(Usuario usuario, int precio, Pieza pieza) {
 		
 		if (ofertasAceptadasSubastas.containsKey(pieza.getTituloObra())){
-			HashMap<String, Integer> ofertasPieza = ofertasAceptadasSubastas.get(pieza.getNombre());
+			HashMap<String, Integer> ofertasPieza = ofertasAceptadasSubastas.get(pieza.getTituloObra());
 			ofertasPieza.put(usuario.getNombre(), precio);
 			ofertasAceptadasSubastas.put(pieza.getTituloObra(), ofertasPieza);
 		}

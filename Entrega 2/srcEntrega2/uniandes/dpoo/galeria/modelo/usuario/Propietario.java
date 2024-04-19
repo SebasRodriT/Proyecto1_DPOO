@@ -10,7 +10,7 @@ public class Propietario extends Usuario {
 
     public Propietario(String nombre, int identificacion, int edad, String nombreUsuario, String password,
                        int numeroTelefono, String correo) {
-        super(nombre, identificacion, edad, nombreUsuario, password);
+        super(nombre, identificacion, edad, nombreUsuario, password, "Propietario");
         this.numeroTelefono = numeroTelefono;
         this.correo = correo;
         this.piezasQuePosee = new ArrayList<>();

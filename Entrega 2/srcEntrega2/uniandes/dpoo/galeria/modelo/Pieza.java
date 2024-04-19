@@ -10,13 +10,14 @@ public class Pieza {
 	protected Artista autor;
 	protected boolean exhibido;
 	protected String tematica;
+	
 	//Agregar uml y get
 	protected int precio;
 	
 
 	private ArrayList<Pieza> inventarioPiezas = new ArrayList<Pieza>();
 	
-	public Pieza(boolean vendida ,String tituloObra, int año,String lugarCreacion, Artista autor, boolean exhibido, String tematica) {
+	public Pieza(boolean vendida ,String tituloObra, int año,String lugarCreacion, Artista autor, boolean exhibido, String tematica, int precio) {
 		this.vendida = vendida;
 		this.tituloObra = tituloObra;
 		this.año = año;
@@ -24,6 +25,8 @@ public class Pieza {
 		this.autor = autor;
 		this.exhibido = exhibido;
 		this.tematica = tematica;
+		this.precio = precio;
+
 	}
 
 	public boolean isVendida() {

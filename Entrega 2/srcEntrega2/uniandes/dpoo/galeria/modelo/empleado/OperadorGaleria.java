@@ -26,7 +26,6 @@ public class OperadorGaleria extends Empleado {
         subastasActivas.put(pieza, subasta);
         participantesPorSubasta.put(pieza, new ArrayList<>());
         ofertasPorSubasta.put(pieza, new HashMap<>());
-        subasta.iniciar();
     }
 
     public void registrarParticipantesSubasta(Usuario usuario, Pieza pieza) {
@@ -43,12 +42,15 @@ public class OperadorGaleria extends Empleado {
         ofertasPorSubasta.put(pieza, ofertas);
     }
 
-    public void aceptarOfertasSubasta(Pieza pieza) {
+    public void aceptarOfertasSubasta(Pieza pieza, Usuario usuario) {
       
         Subasta subasta = subastasActivas.get(pieza);
-        if (subasta != null && subasta.puedeAceptarOfertas()) {
+        if (subasta != null){
+
+        
             HashMap<Usuario, Double> ofertas = ofertasPorSubasta.get(pieza);
-            subasta.aceptarOfertas(ofertas);
+            int precio = pieza.getPrecio();
+            subasta.agregarOfertaSubasta(usuario,precio,pieza);
         }
     }
 
@@ -72,7 +74,7 @@ public class OperadorGaleria extends Empleado {
         ArrayList<Usuario> participantes = participantesPorSubasta.get(pieza);
         if (participantes != null) {
             for (Usuario participante : participantes) {
-                participante.notificar("La subasta para la pieza " + pieza.getNombre() + " ha finalizado.");
+                System.out.println();
             }
         }
     }

@@ -11,11 +11,13 @@ public class Comprador extends Usuario {
     private int numeroTelefono;
     private String correo;
     private int valorMaxCompras;
-    private HashMap<String, ArrayList<String>> piezasCompradas;
+    private HashMap<String, Integer> piezasCompradas;
+    private HashMap<Pieza, String> listapieza;
+    
 
     public Comprador(String nombre, int identificacion, int edad, String nombreUsuario, String password,
                      int numeroTelefono, String correo, int valorMaxCompras) {
-        super(nombre, identificacion, edad, nombreUsuario, password);
+        super(nombre, identificacion, edad, nombreUsuario, password, "Comprador");
         this.numeroTelefono = numeroTelefono;
         this.correo = correo;
         this.valorMaxCompras = valorMaxCompras;
@@ -33,10 +35,18 @@ public class Comprador extends Usuario {
     public int getValorMaxCompras() {
         return valorMaxCompras;
     }
+    
+    public void establecerLimiteCompras(Integer limite){
+        this.valorMaxCompras = limite;
 
-     public void comprarPieza(String nombrePieza, Pieza pieza) {
-       
-        double precioPieza = pieza.getPrecio(); 
+    }
+
+    public HashMap<Pieza,String> getlistapiez (){
+        return listapieza;
+    }
+
+     public void comprarPieza(String nombrePieza, Pieza pieza, int precioPieza) {
+
         if (precioPieza <= valorMaxCompras) {
             
            
@@ -55,11 +65,24 @@ public class Comprador extends Usuario {
 
     private void registrarCompra(String idPieza, Pieza pieza) {
        
-        ArrayList<String> detallesCompra = new ArrayList<>();
-        detallesCompra.add(pieza.getTituloObra());
-        detallesCompra.add(String.valueOf(pieza.getPrecio())); 
+         
        
-        piezasCompradas.put(idPieza, detallesCompra);
+        piezasCompradas.put(idPieza, pieza.getPrecio());
+        listapieza.put(pieza, pieza.getTituloObra());
        
         valorMaxCompras -= pieza.getPrecio();
-    }}
+    }
+
+    public int getprecioPieza(String nombrePieza){
+        Integer valor=0;
+        for (Pieza key : listapieza.keySet()) {
+            if (listapieza.get(key).equals(nombrePieza)){
+                valor = key.getPrecio();
+            }
+        }
+        return valor;
+        
+    }
+
+}
+    

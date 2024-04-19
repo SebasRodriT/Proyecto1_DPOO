@@ -3,6 +3,8 @@ package uniandes.dpoo.galeria.modelo.empleado;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.junit.Test.None;
+
 import uniandes.dpoo.galeria.modelo.Pieza;
 import uniandes.dpoo.galeria.modelo.usuario.Comprador;
 import uniandes.dpoo.galeria.modelo.usuario.Usuario;
@@ -31,10 +33,10 @@ public class AdministradorGaleria extends Empleado {
         inventario.add(pieza);
     }
 
-    public void confirmarVenta(Comprador comprador, Pieza pieza) {
+    public void confirmarVenta(Comprador comprador, Pieza pieza, Integer precio) {
         if (inventario.contains(pieza) && compradoresRegistrados.containsKey(comprador.getIdentificacion())) {
             String nombrePieza = pieza.getTituloObra();
-            comprador.comprarPieza(nombrePieza,pieza);
+            comprador.comprarPieza(nombrePieza,pieza,precio);
             pieza.marcarComoVendida();
             inventario.remove(pieza);
         }
@@ -48,28 +50,53 @@ public class AdministradorGaleria extends Empleado {
     }
 
     public void verificarUsuario(Usuario usuario) {
-        // Esta implementación dependerá de cómo se definan los usuarios en su sistema.
-        // Por ejemplo, podría ser una comprobación de estado o de permisos.
-    }
+        boolean usuarioActivo = false;
+        boolean usuarioAutorizado = false;
 
-    public void verificarOfertaCompra(Comprador comprador, Pieza pieza) {
-        // Supongamos que esta es una verificación simple para ver si la oferta es aceptable.
-        // La lógica específica dependerá de las reglas del negocio.
-        if (comprador.hacerOferta(pieza) && pieza.aceptarOferta(comprador.getOferta())) {
-            // La oferta del comprador es aceptada.
+        if (usuario.getNombre()!= null || usuario.getIdentificacion()!= 0 || usuario.getPassword()!= null){
+             usuarioActivo = true;
+             usuarioAutorizado = true;
+
+        }
+    
+        if (usuarioActivo && usuarioAutorizado) {
+            System.out.println("Usuario verificado con éxito: " + usuario.getNombre());
+        } else {
+            
+            if (!usuarioActivo) {
+                System.out.println("El usuario " + usuario.getNombre() + " está bloqueado.");
+            }
+            if (!usuarioAutorizado) {
+                System.out.println("El usuario " + usuario.getNombre() + " no tiene los permisos necesarios.");
+            }
         }
     }
+    
+    
+        public void verificarOfertaCompra(Comprador comprador, Pieza pieza) {
+            String nombrePieza = pieza.getTituloObra();
+            
+            int valor = comprador.getprecioPieza(pieza.getTituloObra());
+            
+           
+            if (valor != 0) {
+                System.out.println("Oferta aceptada para la pieza: " + pieza.getTituloObra() + " por el comprador: " + comprador.getNombre());
+            } else {
+                System.out.println("Oferta rechazada o inválida para la pieza: " + pieza.getTituloObra() + " por el comprador: " + comprador.getNombre());
+            }
+        }
 
     public void establecerLimiteCompras(Comprador comprador, int limite) {
         if (compradoresRegistrados.containsKey(comprador.getIdentificacion())) {
-            comprador.setLimiteCompras(limite);
+            comprador.establecerLimiteCompras(limite);
         }
     }
 
     public void modificarLimiteCompras(Comprador comprador) {
         if (compradoresRegistrados.containsKey(comprador.getIdentificacion())) {
-            int limiteActual = comprador.getLimiteCompras();
-            comprador.setLimiteCompras((int) (limiteActual * 1.1)); // Aumenta el límite en un 10%
+            int limiteActual = comprador.getValorMaxCompras();
+            comprador.establecerLimiteCompras((int) (limiteActual * 1.1)); 
         }
     }
 }
+

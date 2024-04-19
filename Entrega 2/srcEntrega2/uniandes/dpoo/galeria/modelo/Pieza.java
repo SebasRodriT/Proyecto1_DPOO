@@ -97,4 +97,16 @@ public class Pieza {
     	    System.out.println("Pieza no encontrada");
     	}
 	}
+	
+	public Pieza buscarPieza(String nombre) {
+		Pieza rta = null;
+		for (int i = 0; i < inventarioPiezas.size(); i++) {
+			Pieza pieza = inventarioPiezas.get(i);
+			if (pieza.getTituloObra().equalsIgnoreCase(nombre)) {
+				rta = pieza;
+				return rta;
+			}
+		}
+		return rta;
+	}
 }

@@ -22,6 +22,7 @@ public class Comprador extends Usuario {
         this.correo = correo;
         this.valorMaxCompras = valorMaxCompras;
         this.piezasCompradas = new HashMap<>();
+        this.saldo = saldo;
     }
 
     public int getNumeroTelefono() {
@@ -62,6 +63,17 @@ public class Comprador extends Usuario {
             System.out.println("La compra excede el valor máximo de compras permitido.");
         }
     }
+     
+    public void actualizarSaldo(int valor) {
+    	saldo-= valor;
+    }
+    public void agregarPieza(Pieza pieza) {
+    	String nombre = pieza.getTituloObra();
+    	String valor = String.valueOf(pieza.getPrecio());
+    	piezasCompradas.put(nombre, valor);
+    	valorMaxCompras -= pieza.getPrecio();
+    }
+  
 
     private void registrarCompra(String idPieza, Pieza pieza) {
        

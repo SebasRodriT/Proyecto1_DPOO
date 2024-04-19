@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 import java.util.Scanner;
 
 import uniandes.dpoo.galeria.modelo.Pieza;
+import uniandes.dpoo.galeria.modelo.pago.Pago;
 import uniandes.dpoo.galeria.modelo.usuario.Comprador;
 import uniandes.dpoo.galeria.modelo.usuario.Usuario;
 
@@ -28,7 +29,7 @@ public class Plataforma {
 	}
 	
 	
-	public String subastar(Pieza pieza) {
+	public Comprador subastar(Pieza pieza) {
 		
 		HashMap<String, HashMap<String, Integer>> ofertas = subasta.getOfertas();
 		HashMap<String, Integer> ofertasPieza = ofertas.get(pieza.getTituloObra());
@@ -41,8 +42,10 @@ public class Plataforma {
 					mayor = valorInt;
 					ganador = nombre;		
 			}}
-		
-		return ganador;
+		Comprador ganadorSubasta= encontrarComprador(ganador);
+		Pago pago = new Pago(ganadorSubasta, mayor);
+		ganadorSubasta.agregarPieza(pieza);
+		return ganadorSubasta;
 		
 		
 	} 
@@ -81,7 +84,18 @@ public class Plataforma {
 		
 	}
 
-
+	public Comprador encontrarComprador(String nombre) {
+    	int i = 0;
+    	Comprador comprador = null;
+    	while (i<usuarios.size()) {
+    		Usuario usuario = usuarios.get(i);
+    		if (usuario.getNombre().equals(nombre)) {
+    			comprador = (Comprador) usuario;
+    			return comprador;}
+    		i++;}
+		return comprador;
+    		}
+    	
 	public static ArrayList<Usuario> getUsuarios() {
 		return usuarios;
 	}

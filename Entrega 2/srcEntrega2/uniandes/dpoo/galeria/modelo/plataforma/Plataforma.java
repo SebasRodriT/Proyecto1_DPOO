@@ -35,10 +35,11 @@ public class Plataforma {
 	}
 	
 	
-	public Comprador subastar(Pieza pieza) {
+	public Comprador subastar(Pieza pieza) throws Exception {
 		
 		HashMap<String, HashMap<String, Integer>> ofertas = subasta.getOfertas();
 		HashMap<String, Integer> ofertasPieza = ofertas.get(pieza.getTituloObra());
+		if(ofertasPieza.size()>= 3) {
 		String ganador = "";
 		int mayor = -1;
 		for (String nombre : ofertasPieza.keySet()) {
@@ -51,7 +52,10 @@ public class Plataforma {
 		Comprador ganadorSubasta= encontrarComprador(ganador);
 		Pago pago = new Pago(ganadorSubasta, mayor);
 		ganadorSubasta.agregarPieza(pieza);
-		return ganadorSubasta;
+		return ganadorSubasta;}
+	else {
+		throw new Exception ("Saldo insuficiente para comprar la pieza");
+	}
 		
 		
 	} 

@@ -3,6 +3,7 @@ package uniandes.dpoo.galeria.modelo.empleado;
 import java.util.HashMap;
 
 import uniandes.dpoo.galeria.modelo.Pieza;
+import uniandes.dpoo.galeria.modelo.plataforma.Plataforma;
 import uniandes.dpoo.galeria.modelo.plataforma.Subasta;
 import uniandes.dpoo.galeria.modelo.usuario.Usuario;
 
@@ -12,7 +13,9 @@ public class OperadorGaleria extends Empleado {
 
     private HashMap<Pieza, Subasta> subastasActivas;
     private HashMap<Pieza, ArrayList<Usuario>> participantesPorSubasta;
-    private HashMap<Pieza, HashMap<Usuario, Double>> ofertasPorSubasta;
+    private HashMap<Pieza, HashMap<Usuario, Integer>> ofertasPorSubasta;
+    private Subasta subasta = new Subasta();
+    private Plataforma plataforma= new Plataforma();
 
     public OperadorGaleria(String nombre, int identificacion, int edad) {
         super("Operador", nombre, identificacion, edad);
@@ -22,7 +25,7 @@ public class OperadorGaleria extends Empleado {
     }
 
     public void iniciarSubasta(Pieza pieza) {
-        Subasta subasta = new Subasta(pieza);
+    	subasta.agregarPiezaASubastar(pieza);
         subastasActivas.put(pieza, subasta);
         participantesPorSubasta.put(pieza, new ArrayList<>());
         ofertasPorSubasta.put(pieza, new HashMap<>());
@@ -36,8 +39,9 @@ public class OperadorGaleria extends Empleado {
         participantesPorSubasta.put(pieza, participantes);
     }
 
-    public void registrarOfertasSubasta(Usuario usuario, Pieza pieza, double oferta) {
-        HashMap<Usuario, Double> ofertas = ofertasPorSubasta.getOrDefault(pieza, new HashMap<>());
+    public void registrarOfertasSubasta(Usuario usuario, Pieza pieza, int oferta) {
+    	subasta.agregarOfertaSubasta(usuario, oferta, pieza);
+        HashMap<Usuario, Integer> ofertas = ofertasPorSubasta.getOrDefault(pieza, new HashMap<>());
         ofertas.put(usuario, oferta);
         ofertasPorSubasta.put(pieza, ofertas);
     }
@@ -46,9 +50,8 @@ public class OperadorGaleria extends Empleado {
       
         Subasta subasta = subastasActivas.get(pieza);
         if (subasta != null){
-
         
-            HashMap<Usuario, Double> ofertas = ofertasPorSubasta.get(pieza);
+            HashMap<Usuario, Integer> ofertas = ofertasPorSubasta.get(pieza);
             int precio = pieza.getPrecio();
             subasta.agregarOfertaSubasta(usuario,precio,pieza);
         }
@@ -57,7 +60,7 @@ public class OperadorGaleria extends Empleado {
     public Usuario identificarPostorGanador(Pieza pieza) {
         Subasta subasta = subastasActivas.get(pieza);
         if (subasta != null) {
-            return subasta.identificarGanador();
+            return plataforma.subastar(pieza);
         }
         return null;
     }
@@ -65,7 +68,7 @@ public class OperadorGaleria extends Empleado {
     public void finalizarSubasta(Pieza pieza) {
         Subasta subasta = subastasActivas.remove(pieza);
         if (subasta != null) {
-            subasta.finalizar();
+            subasta.finalizar(pieza);
             notificarParticipantes(pieza, subasta);
         }
     }

@@ -6,26 +6,30 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import uniandes.dpoo.galeria.modelo.Pieza;
+import uniandes.dpoo.galeria.modelo.plataforma.Plataforma;
+import uniandes.dpoo.galeria.modelo.plataforma.Subasta;
 
 public class Comprador extends Usuario {
-    private int numeroTelefono;
+    private String numeroTelefono;
     private String correo;
     private int valorMaxCompras;
     private HashMap<String, Integer> piezasCompradas;
     private HashMap<Pieza, String> listapieza;
     private int saldo;
+    private Plataforma plataforma = new Plataforma();
     
 
     public Comprador(String nombre, int identificacion, int edad, String nombreUsuario, String password,
-                     int numeroTelefono, String correo, int valorMaxCompras) {
+                     String numeroTelefono, String correo, int saldo) {
         super(nombre, identificacion, edad, nombreUsuario, password, "Comprador");
         this.numeroTelefono = numeroTelefono;
         this.correo = correo;
-        this.valorMaxCompras = valorMaxCompras;
         this.piezasCompradas = new HashMap<>();
+        this.saldo = saldo;
+        plataforma.registrarUsuario(this);
     }
 
-    public int getNumeroTelefono() {
+    public String getNumeroTelefono() {
         return numeroTelefono;
     }
 

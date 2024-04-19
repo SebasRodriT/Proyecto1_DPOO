@@ -62,7 +62,7 @@ public class Pieza {
 	}
 	
 	public void marcarComoVendida() {
-		vendida = true;
+		this.vendida = true;
 	}
 
 	public void marcarComoDevolucion() {

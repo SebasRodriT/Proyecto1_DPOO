@@ -23,15 +23,20 @@ public class CajeroGaleria extends Empleado {
     }
 
    
-    public void registrarPago(Comprador comprador, Pieza pieza, String idPago, String tipoPagoString) {
+    public boolean registrarPago(Comprador comprador, Pieza pieza, String idPago, String tipoPagoString) {
       
-         plataforma.vender(comprador, pieza);
+        try { plataforma.vender(comprador, pieza);
          int precio = pieza.getPrecio();    
          Pago pago = new Pago(comprador, precio);
          
            
             registroPagos.put(idPago, tipoPagoString);
-          
+            return true;
+        } catch (Exception e) {
+        	System.out.println("No se puso vender la pieza");
+        	return false;
+    
+        }
    
     }
     }

@@ -66,7 +66,7 @@ public class Usuario {
         if ("Comprador".equals(road)) {
             System.out.println("Inicio de sesión exitoso en el comprador.");
             boolean salir = false;
-            Comprador comprador = new Comprador(nombre, identificacion, edad, nombreUsuario, password, identificacion, nombre, edad);
+            Comprador comprador = new Comprador(nombre, identificacion, edad, nombreUsuario, password, "", "", 0);
 
             while (!salir) {
                 System.out.println("Seleccione una opción:");

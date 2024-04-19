@@ -58,7 +58,7 @@ public class OperadorGaleria extends Empleado {
         }
     
 
-    public Usuario identificarPostorGanador(Pieza pieza) {
+    public Usuario identificarPostorGanador(Pieza pieza) throws Exception {
         Subasta subasta = subastasActivas.get(pieza);
         if (subasta != null) {
             return plataforma.subastar(pieza);

@@ -10,12 +10,9 @@ public class Subasta {
 	private ArrayList<String> piezasSubastadas = new ArrayList<String>();
 	private ArrayList<String> usuariosSubasta = new ArrayList<String>();
 	private HashMap<String, HashMap<String, Integer>> ofertasAceptadasSubastas = new HashMap<String, HashMap<String, Integer>>();
-	private Pieza pieza;
 
-	public Subasta(Pieza pieza) {
-		this.pieza = pieza;
-		
-	}
+
+	public Subasta(){}
 	
 	public void agregarPiezaASubastar(Pieza pieza) {
 		
@@ -41,6 +38,11 @@ public class Subasta {
 	}
 	
 	
-	
+	public void finalizar(Pieza pieza) {
+		
+		String nombre = pieza.getTituloObra();
+		ofertasAceptadasSubastas.remove(nombre);
+		
+	}
 }
 

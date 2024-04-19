@@ -13,6 +13,7 @@ public class Comprador extends Usuario {
     private int valorMaxCompras;
     private HashMap<String, Integer> piezasCompradas;
     private HashMap<Pieza, String> listapieza;
+    private int saldo;
     
 
     public Comprador(String nombre, int identificacion, int edad, String nombreUsuario, String password,
@@ -61,6 +62,22 @@ public class Comprador extends Usuario {
             System.out.println("La compra excede el valor máximo de compras permitido.");
         }
     }
+     
+     public HashMap<String, Integer> getPiezasCompradas() {
+		return piezasCompradas;
+	}
+
+	public HashMap<Pieza, String> getListapieza() {
+		return listapieza;
+	}
+
+	public int getSaldo() {
+		return saldo;
+	}
+
+	public void actualizarSaldo(int valor) {
+     	saldo-= valor;
+     }
 
     private void registrarCompra(String idPieza, Pieza pieza) {
        

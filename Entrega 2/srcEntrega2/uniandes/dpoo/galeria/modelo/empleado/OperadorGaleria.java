@@ -5,6 +5,7 @@ import java.util.HashMap;
 import uniandes.dpoo.galeria.modelo.Pieza;
 import uniandes.dpoo.galeria.modelo.plataforma.Plataforma;
 import uniandes.dpoo.galeria.modelo.plataforma.Subasta;
+import uniandes.dpoo.galeria.modelo.usuario.Comprador;
 import uniandes.dpoo.galeria.modelo.usuario.Usuario;
 
 import java.util.ArrayList;
@@ -40,22 +41,22 @@ public class OperadorGaleria extends Empleado {
     }
 
     public void registrarOfertasSubasta(Usuario usuario, Pieza pieza, int oferta) {
+    	if (aceptarOfertasSubasta(pieza, usuario)) {
     	subasta.agregarOfertaSubasta(usuario, oferta, pieza);
         HashMap<Usuario, Integer> ofertas = ofertasPorSubasta.getOrDefault(pieza, new HashMap<>());
         ofertas.put(usuario, oferta);
-        ofertasPorSubasta.put(pieza, ofertas);
+        ofertasPorSubasta.put(pieza, ofertas);}
     }
 
-    public void aceptarOfertasSubasta(Pieza pieza, Usuario usuario) {
+    public boolean aceptarOfertasSubasta(Pieza pieza, Usuario usuario) {
       
-        Subasta subasta = subastasActivas.get(pieza);
-        if (subasta != null){
-        
-            HashMap<Usuario, Integer> ofertas = ofertasPorSubasta.get(pieza);
-            int precio = pieza.getPrecio();
-            subasta.agregarOfertaSubasta(usuario,precio,pieza);
+    	Comprador comprador = (Comprador) usuario;
+    	if (comprador.getSaldo()-pieza.getPrecio() >= 0) {
+    		return true;
+    	}
+    	return false;
         }
-    }
+    
 
     public Usuario identificarPostorGanador(Pieza pieza) {
         Subasta subasta = subastasActivas.get(pieza);

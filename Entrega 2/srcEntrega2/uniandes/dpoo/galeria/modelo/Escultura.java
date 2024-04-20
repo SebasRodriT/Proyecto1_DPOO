@@ -18,6 +18,14 @@ public class Escultura extends Pieza{
 		this.necesitaElectricidad = necesitaElectricidad;
 	}
 
+	public ArrayList<String> getMaterialesDeConstruccion() {
+		return materialesDeConstruccion;
+	}
+
+	public ArrayList<String> getElementosDeInstalacion() {
+		return elementosDeInstalacion;
+	}
+
 	public double getAlto() {
 		return alto;
 	}

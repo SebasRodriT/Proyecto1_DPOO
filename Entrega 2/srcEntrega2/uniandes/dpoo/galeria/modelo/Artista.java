@@ -24,7 +24,14 @@ public class Artista {
 		return tipoArtista;
 	}
 	
+	public ArrayList<Pieza> getPiezas() {
+		return piezas;
+	}
+	
 	public void agregarPieza(Pieza pieza) {
 		this.piezas.add(pieza);
 	}
+
+
+	
 }

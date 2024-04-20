@@ -98,6 +98,10 @@ public class Pieza {
     	}
 	}
 	
+	public ArrayList<Pieza> getInventarioPiezas() {
+		return inventarioPiezas;
+	}
+
 	public Pieza buscarPieza(String nombre) {
 		Pieza rta = null;
 		for (int i = 0; i < inventarioPiezas.size(); i++) {

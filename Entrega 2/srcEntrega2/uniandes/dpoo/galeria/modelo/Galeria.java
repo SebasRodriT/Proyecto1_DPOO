@@ -10,10 +10,10 @@ import uniandes.dpoo.galeria.modelo.usuario.Usuario;
 public class Galeria {
 	private String ubicacion;
 	private int cantidadPiezas;
-	private ArrayList<Pieza> piezasExhibidas = new ArrayList<Pieza>();
-    private ArrayList<Pieza> piezasBodega = new ArrayList<Pieza>();
+	private static ArrayList<Pieza> piezasExhibidas = new ArrayList<Pieza>();
+    private static ArrayList<Pieza> piezasBodega = new ArrayList<Pieza>();
     private ArrayList<Pieza> historicoPiezas = new ArrayList<Pieza>();
-    private Plataforma plataforma = new Plataforma();
+    private static Plataforma plataforma = new Plataforma();
 
     public Galeria(String ubicacion, int cantidadPiezas) {
     	this.ubicacion = ubicacion;
@@ -28,7 +28,7 @@ public class Galeria {
 		return cantidadPiezas;
 	}
     
-    public void verificarComprador(Comprador comprador) {
+    public static boolean verificarComprador(Comprador comprador) {
     	ArrayList<Usuario> usuarios = plataforma.getUsuarios();
     	boolean encontrado = false;
         
@@ -41,8 +41,10 @@ public class Galeria {
         
         if (encontrado) {
             System.out.println("El comprador está en la lista de usuarios.");
+            return true;
         } else {
             System.out.println("El comprador NO está en la lista de usuarios.");
+            return false;
         }
     	
     }
@@ -51,7 +53,19 @@ public class Galeria {
     	this.piezasExhibidas.add(pieza);
     }
     
-    public void agregarPiezaBodega(Pieza pieza) {
+    public ArrayList<Pieza> getPiezasExhibidas() {
+		return piezasExhibidas;
+	}
+
+	public ArrayList<Pieza> getPiezasBodega() {
+		return piezasBodega;
+	}
+
+	public ArrayList<Pieza> getHistoricoPiezas() {
+		return historicoPiezas;
+	}
+
+	public void agregarPiezaBodega(Pieza pieza) {
     	this.piezasBodega.add(pieza);
     }
     
@@ -68,7 +82,7 @@ public class Galeria {
     	this.piezasBodega.remove(pieza);
     }
     
-    public void buscarPiezaExhibida(Pieza pieza) {
+    public static Pieza buscarPiezaExhibida(Pieza pieza) {
     	Pieza piezaEncontrada = null;
     	String tituloObra = pieza.getTituloObra();
     	for (int i = 0; i < piezasExhibidas.size(); i++) {
@@ -84,12 +98,14 @@ public class Galeria {
     	    System.out.println("Pieza encontrada: " + piezaEncontrada.getTituloObra());
     	    System.out.println("Autor pieza encontrada: " + piezaEncontrada.getAutor().getNombre());
     	    System.out.println("Año pieza encontrada: " + piezaEncontrada.getAño());
+    	    return piezaEncontrada;
     	} else {
     	    System.out.println("Pieza no encontrada");
+    	    return null;
     	}
     }
     	
-    public void buscarPiezaBodega(Pieza pieza) {
+    public static Pieza buscarPiezaBodega(Pieza pieza) {
     	Pieza piezaEncontrada = null;
     	String tituloObra = pieza.getTituloObra();
     	for (int i = 0; i < piezasBodega.size(); i++) {
@@ -105,12 +121,14 @@ public class Galeria {
     	    System.out.println("Pieza encontrada: " + piezaEncontrada.getTituloObra());
     	    System.out.println("Autor pieza encontrada: " + piezaEncontrada.getAutor().getNombre());
     	    System.out.println("Año pieza encontrada: " + piezaEncontrada.getAño());
+    	    return piezaEncontrada;
     	} else {
     	    System.out.println("Pieza no encontrada");
+    	    return null;
     	}
     }
     
-    public void buscarPiezahistorico(Pieza pieza) {
+    public static Pieza buscarPiezahistorico(Pieza pieza) {
     	Pieza piezaEncontrada = null;
     	String tituloObra = pieza.getTituloObra();
     	for (int i = 0; i < piezasBodega.size(); i++) {
@@ -126,8 +144,10 @@ public class Galeria {
     	    System.out.println("Pieza encontrada: " + piezaEncontrada.getTituloObra());
     	    System.out.println("Autor pieza encontrada: " + piezaEncontrada.getAutor().getNombre());
     	    System.out.println("Año pieza encontrada: " + piezaEncontrada.getAño());
+    	    return piezaEncontrada;
     	} else {
     	    System.out.println("Pieza no encontrada");
+    	    return null;
     	}
     }
 }

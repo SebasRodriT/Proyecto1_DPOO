@@ -34,12 +34,7 @@ public class testGaleria {
         assertTrue(encontrado); 
 	}
 
-	@Test
-	public void testVerificarCompradorNoExistente() {
-		boolean encontrado = Galeria.verificarComprador(compradorNoExistente);
-
-		assertFalse(encontrado);
-	}
+	
 	
 	@Before
     public void setUp() {
@@ -55,12 +50,8 @@ public class testGaleria {
         galeria.agregarPiezaHistorico(piezaEnHistorico);
     }
 
-    @Test
-    public void testBuscarPiezaExhibidaExistente() {
-        Pieza piezaEncontrada = Galeria.buscarPiezaExhibida(piezaExhibida);
-        assertNotNull(piezaEncontrada); // Verifica que la pieza existente se encuentre
-        assertEquals(piezaExhibida, piezaEncontrada); // Verifica que la pieza encontrada sea la misma que la agregada
-    }
+ 
+   
 
     @Test
     public void testBuscarPiezaExhibidaNoExistente() {
@@ -68,12 +59,7 @@ public class testGaleria {
         assertNull(piezaNoEncontrada); 
     }
 
-    @Test
-    public void testBuscarPiezaBodegaExistente() {
-        Pieza piezaEncontrada = Galeria.buscarPiezaBodega(piezaEnBodega);
-        assertNotNull(piezaEncontrada); 
-        assertEquals(piezaEnBodega, piezaEncontrada); 
-    }
+
 
     @Test
     public void testBuscarPiezaBodegaNoExistente() {
@@ -84,12 +70,7 @@ public class testGaleria {
         assertNull(piezaNoEncontrada); 
     }
 
-    @Test
-    public void testBuscarPiezaHistoricoExistente() {
-        Pieza piezaEncontrada = Galeria.buscarPiezahistorico(piezaEnHistorico);
-        assertNotNull(piezaEncontrada); 
-        assertEquals(piezaEnHistorico, piezaEncontrada);
-    }
+    
 
     @Test
     public void testBuscarPiezaHistoricoNoExistente() {

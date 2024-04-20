@@ -25,7 +25,6 @@ public class testSubasta {
 	private Artista vG = new Artista("Vincent van Gogh", "Pintor");
 	private Pintura lNE = new Pintura("óleo sobre lienzo","impresionismo", 73.7, 92.1, false, "La Noche Estrellada", 1889, "Saint Rémy de Provence",vG, true, "Paisaje", 800000000);
 	private OperadorGaleria operador = new OperadorGaleria("Andres Rios", 11254697, 45);
-	private CajeroGaleria cajero = new CajeroGaleria("Sebastian Rios", 11364587, 40);
 	private Comprador comprador1 = new Comprador("Felipe Gonzales", 11579875, 28, "f.gon", "F123G", "3124257895", "g.gon@gmail.com", 900000000);
 	private Comprador comprador2 = new Comprador("Ana María", 32548901, 34, "a.maria", "AM34A", "3156781234", "ana.maria@gmail.com",1000000000);
 	private Comprador comprador3 = new Comprador("Carlos Rodríguez", 10234876, 45, "c.rod", "CR45R", "3175498765", "carlos.rod@gmail.com", 1500000000);

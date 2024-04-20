@@ -42,6 +42,7 @@ public class OperadorGaleria extends Empleado {
 
     public void registrarOfertasSubasta(Usuario usuario, Pieza pieza, int oferta) {
     	if (aceptarOfertasSubasta(pieza, usuario)) {
+    	registrarParticipantesSubasta(usuario, pieza);
     	subasta.agregarOfertaSubasta(usuario, oferta, pieza);
         HashMap<Usuario, Integer> ofertas = ofertasPorSubasta.getOrDefault(pieza, new HashMap<>());
         ofertas.put(usuario, oferta);

@@ -22,17 +22,24 @@ public class Plataforma {
 	}
 	
 	
-	public void vender(Comprador comprador, Pieza pieza) {
+	public void vender(Comprador comprador, Pieza pieza) throws Exception {
 		if (comprador.getSaldo() >= pieza.getPrecio()) {
-			
+			int precio = pieza.getPrecio();
+			Pago pago = new Pago(comprador, precio);
+	pieza.marcarComoVendida();		
+		}
+		
+		else {
+			throw new Exception ("Saldo insuficiente para comprar la pieza");
 		}
 	}
 	
 	
-	public Comprador subastar(Pieza pieza) {
+	public Comprador subastar(Pieza pieza) throws Exception {
 		
 		HashMap<String, HashMap<String, Integer>> ofertas = subasta.getOfertas();
 		HashMap<String, Integer> ofertasPieza = ofertas.get(pieza.getTituloObra());
+		if(ofertasPieza.size()>= 3) {
 		String ganador = "";
 		int mayor = -1;
 		for (String nombre : ofertasPieza.keySet()) {
@@ -45,41 +52,20 @@ public class Plataforma {
 		Comprador ganadorSubasta= encontrarComprador(ganador);
 		Pago pago = new Pago(ganadorSubasta, mayor);
 		ganadorSubasta.agregarPieza(pieza);
-		return ganadorSubasta;
+		pieza.marcarComoVendida();
+		return ganadorSubasta;}
+	else {
+		throw new Exception ("Personas insuficientes para ejecutar la subasta");
+	}
 		
 		
 	} 
-	public void agregarUsuario() {
-
-		Scanner scanner = new Scanner(System.in);
-
-		System.out.println("Por favor ingrese su nombre:");
-        String nombre = scanner.nextLine();
-
-        System.out.println("Por favor ingrese su identificación:");
-        int identificacion = scanner.nextInt(); 
-        scanner.nextLine(); 
-
-        System.out.println("Por favor ingrese su edad:");
-        int edad = scanner.nextInt();
-        scanner.nextLine(); 
-
-        System.out.println("Por favor elija un nombre de usuario:");
-        String nombreUsuario = scanner.nextLine();
-
-        System.out.println("Por favor ingrese su contraseña:");
-        String password = scanner.nextLine();
-
-		System.out.println("Por favor ingrese el tipo de usuario:");
-        String road = scanner.nextLine();
-
-        Usuario usuario = new Usuario(nombre, identificacion, edad, nombreUsuario, password, road);
-
-		
+	
+	public void registrarUsuario (Usuario usuario) {
 		usuarios.add(usuario);
-		scanner.close();
-		
 	}
+		
+	
 	public void agregarPago(Comprador comprador, int precio) {
 		
 	}

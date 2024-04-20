@@ -1,17 +1,24 @@
 package uniandes.dpoo.galeria.modelo.pago;
 
+import java.util.HashMap;
+
+import uniandes.dpoo.galeria.modelo.empleado.CajeroGaleria;
 import uniandes.dpoo.galeria.modelo.usuario.Comprador;
 
 public class Pago {
 	
 	private int numeroFactura = 1;
 	private int precio;
-	private String tipoPago;
+	private static HashMap<Integer, Comprador> pagos = new HashMap <>();
+	private static CajeroGaleria cajero = new CajeroGaleria("Sebastian Rios", 11364587, 40);
 	
-	public Pago(Comprador comprador, int nPrecio, String nTipoPago) {
+	public Pago(Comprador comprador, int nPrecio) {
 		this.precio = nPrecio;
-		this.tipoPago = nTipoPago;
-		//descontar dinero 
+		Integer numeroF = numeroFactura+1;
+		comprador.actualizarSaldo(nPrecio);
+		pagos.put(numeroF, comprador);
+		registrarPago(comprador, String.valueOf(nPrecio));
+		
 	}
 
 	public int getNumeroFactura() {
@@ -21,9 +28,11 @@ public class Pago {
 	public int getPrecio() {
 		return precio;
 	}
-
-	public String getTipoPago() {
-		return tipoPago;
-	}}
 	
+	
+	public void registrarPago(Comprador comprador, String valor) {
+		cajero.registrarPago(comprador, valor);
+	}
+
+	}
 

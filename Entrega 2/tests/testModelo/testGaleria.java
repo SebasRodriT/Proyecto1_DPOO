@@ -21,8 +21,8 @@ public class testGaleria {
 	private Usuario user1 = new Usuario("Maria Ariza", 17657934, 25, "mari34", "MariAri3400", "Comprador");
 	private Usuario user2 = new Usuario("Juan Pérez", 67856453, 35, "jupe45", "Juanpe2005", "Propietario");
 	private Usuario user3 = new Usuario("Pedro Arias", 45638567, 29, "Juanpe01", "Pear2024*", "Comprador");
-	private Comprador compradorExistente = new Comprador("Maria Ariza", 17657934, 25, "mari34", "MariAri3400", 300567895, "mari34@domain.com", 20000000);
-    private Comprador compradorNoExistente = new Comprador("Maria Ariza", 17657934, 25, "mari34", "MariAri3400", 300567895, "mari34@domain.com", 20000000);
+	private Comprador compradorExistente = new Comprador("Maria Ariza", 17657934, 25, "mari34", "MariAri3400", "300567895", "mari34@domain.com", 20000000);
+    private Comprador compradorNoExistente = new Comprador("Maria Ariza", 17657934, 25, "mari34", "MariAri3400", "300567895", "mari34@domain.com", 20000000);
     Artista artista = new Artista("Leonardo Da Vinci", "Pintor");
     Pieza piezaExhibida = new Pieza(false, "La Mona Lisa", 1503, "Italia", artista,true, "Humanismo", 19890786);
     Pieza piezaEnBodega = new Pieza(false, "El Hombre de Vitruvio", 1490, "Italia", artista,true, "Humanismo", 17890786);

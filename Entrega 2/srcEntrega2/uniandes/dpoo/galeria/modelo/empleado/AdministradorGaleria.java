@@ -6,12 +6,15 @@ import java.util.HashMap;
 import org.junit.Test.None;
 
 import uniandes.dpoo.galeria.modelo.Pieza;
+import uniandes.dpoo.galeria.modelo.plataforma.Plataforma;
 import uniandes.dpoo.galeria.modelo.usuario.Comprador;
 import uniandes.dpoo.galeria.modelo.usuario.Usuario;
 
 public class AdministradorGaleria extends Empleado {
     private ArrayList<Pieza> inventario = new ArrayList<>();
     private HashMap<Integer, Comprador> compradoresRegistrados = new HashMap<>();
+    private Plataforma plataforma = new Plataforma();
+    private static int limite = 1000000000;
 
     public AdministradorGaleria(String nombre, int identificacion, int edad) {
         super("Administrador", nombre, identificacion, edad);
@@ -33,19 +36,22 @@ public class AdministradorGaleria extends Empleado {
         inventario.add(pieza);
     }
 
-    public void confirmarVenta(Comprador comprador, Pieza pieza, Integer precio) {
-        if (inventario.contains(pieza) && compradoresRegistrados.containsKey(comprador.getIdentificacion())) {
+    public void confirmarVenta(Comprador comprador, Pieza pieza) throws Exception {
+       
             String nombrePieza = pieza.getTituloObra();
-            comprador.comprarPieza(nombrePieza,pieza,precio);
+            plataforma.vender(comprador, pieza);
             pieza.marcarComoVendida();
             inventario.remove(pieza);
-        }
+            comprador.agregarPieza(pieza);
+            
+        
     }
 
-    public void registrarDevolucion(Pieza pieza) {
+    public void registrarDevolucion(Comprador comprador, Pieza pieza) {
         if (!inventario.contains(pieza)) {
             pieza.marcarComoDevolucion();
             inventario.add(pieza);
+            hacerDevolucion(comprador, pieza.getPrecio());
         }
     }
 
@@ -60,7 +66,7 @@ public class AdministradorGaleria extends Empleado {
         }
     
         if (usuarioActivo && usuarioAutorizado) {
-            System.out.println("Usuario verificado con éxito: " + usuario.getNombre());
+        	System.out.println("El usuario " + usuario.getNombre() + " está autorizado.");
         } else {
             
             if (!usuarioActivo) {
@@ -73,30 +79,34 @@ public class AdministradorGaleria extends Empleado {
     }
     
     
-        public void verificarOfertaCompra(Comprador comprador, Pieza pieza) {
-            String nombrePieza = pieza.getTituloObra();
-            
-            int valor = comprador.getprecioPieza(pieza.getTituloObra());
-            
+        public void verificarOfertaCompra(Comprador comprador, Pieza pieza) throws Exception {
+            int valor = pieza.getPrecio();
+            int oferta = comprador.getValorMaxCompras();
            
-            if (valor != 0) {
+            if (oferta>=valor) {
                 System.out.println("Oferta aceptada para la pieza: " + pieza.getTituloObra() + " por el comprador: " + comprador.getNombre());
+                confirmarVenta(comprador, pieza);
             } else {
                 System.out.println("Oferta rechazada o inválida para la pieza: " + pieza.getTituloObra() + " por el comprador: " + comprador.getNombre());
             }
         }
 
-    public void establecerLimiteCompras(Comprador comprador, int limite) {
-        if (compradoresRegistrados.containsKey(comprador.getIdentificacion())) {
+    public void establecerLimiteCompras(Comprador comprador) {
+        
             comprador.establecerLimiteCompras(limite);
-        }
     }
 
-    public void modificarLimiteCompras(Comprador comprador) {
-        if (compradoresRegistrados.containsKey(comprador.getIdentificacion())) {
-            int limiteActual = comprador.getValorMaxCompras();
-            comprador.establecerLimiteCompras((int) (limiteActual * 1.1)); 
-        }
+    public int modificarLimiteCompras(Comprador comprador) {
+        
+            if (comprador.getSaldo() > comprador.getValorMaxCompras()) {
+            	return comprador.getSaldo();
+            }
+			return comprador.getValorMaxCompras();
+        
+    }
+    
+    public void hacerDevolucion(Comprador comprador, int valor) {
+    	comprador.actualizarSaldoDevolucion(valor);
     }
 }
 

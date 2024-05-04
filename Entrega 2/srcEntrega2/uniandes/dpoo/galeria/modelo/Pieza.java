@@ -1,6 +1,7 @@
 package uniandes.dpoo.galeria.modelo;
 
 import java.util.ArrayList;
+import java.time.LocalDate;
 
 public class Pieza {
 	protected boolean vendida;
@@ -26,7 +27,6 @@ public class Pieza {
 		this.exhibido = exhibido;
 		this.tematica = tematica;
 		this.precio = precio;
-
 	}
 
 	public boolean isVendida() {

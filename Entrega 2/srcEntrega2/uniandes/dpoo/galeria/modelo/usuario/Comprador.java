@@ -82,11 +82,11 @@ public class Comprador extends Usuario {
     	String nombre = pieza.getTituloObra();
     	Integer valor = (Integer)pieza.getPrecio();
     	piezasCompradas.add(pieza);
-    	valorMaxCompras -= pieza.getPrecio();
+    	
     }
     
-    public void hacerOfertaVenta(Pieza pieza) throws Exception {
-    	admin.verificarOfertaCompra(this, pieza);
+    public void hacerOfertaVenta(Pieza pieza, String fecha) throws Exception {
+    	admin.verificarOfertaCompra(this, pieza, fecha);
     }
     	
     	

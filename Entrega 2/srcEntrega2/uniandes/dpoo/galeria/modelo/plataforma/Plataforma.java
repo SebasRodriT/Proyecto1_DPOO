@@ -25,7 +25,6 @@ public class Plataforma {
 		if (comprador.getSaldo() >= pieza.getPrecio()) {
 			int precio = pieza.getPrecio();
 			Pago pago = new Pago(comprador, precio);
-	pieza.marcarComoVendida();		
 		}
 		
 		else {

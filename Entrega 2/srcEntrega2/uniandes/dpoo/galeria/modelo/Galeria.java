@@ -18,7 +18,7 @@ public class Galeria {
     public Galeria(String ubicacion, int cantidadPiezas) {
     	this.ubicacion = ubicacion;
     	this.cantidadPiezas = cantidadPiezas;
-    	plataforma = Plataforma.obtenerInstancia();
+    	this.plataforma = Plataforma.obtenerInstancia();
     }
 
 	public String getUbicacion() {
@@ -29,7 +29,8 @@ public class Galeria {
 		return cantidadPiezas;
 	}
     
-    public boolean verificarComprador(Comprador comprador) {
+   
+	public boolean verificarComprador(Comprador comprador) {
     	ArrayList<Usuario> usuarios = plataforma.getUsuarios();
     	boolean encontrado = false;
         

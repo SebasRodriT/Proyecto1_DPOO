@@ -7,9 +7,8 @@ import java.util.HashMap;
 
 import uniandes.dpoo.galeria.modelo.Pieza;
 import uniandes.dpoo.galeria.modelo.empleado.AdministradorGaleria;
-import uniandes.dpoo.galeria.modelo.empleado.OperadorGaleria;
 import uniandes.dpoo.galeria.modelo.plataforma.Plataforma;
-import uniandes.dpoo.galeria.modelo.plataforma.RegistroSubasta;
+import uniandes.dpoo.galeria.modelo.plataforma.Subasta;
 
 public class Comprador extends Usuario {
     private String numeroTelefono;
@@ -17,10 +16,10 @@ public class Comprador extends Usuario {
     private int valorMaxCompras;
     private ArrayList<Pieza> piezasCompradas;
     private HashMap<Pieza, String> listapieza;
+    private ArrayList<Pieza> coleccion;
     private int saldo;
-    private Plataforma plataforma;
-    private AdministradorGaleria admin;
-    private OperadorGaleria operador;
+    private Plataforma plataforma = new Plataforma();
+    private static AdministradorGaleria admin = new AdministradorGaleria("Martin Castro",12846975,32);
     
 
     public Comprador(String nombre, int identificacion, int edad, String nombreUsuario, String password,
@@ -30,11 +29,9 @@ public class Comprador extends Usuario {
         this.correo = correo;
         this.piezasCompradas = new ArrayList<>();
         this.saldo = saldo;
-        plataforma = Plataforma.obtenerInstancia();
         plataforma.registrarUsuario(this);
-        admin = AdministradorGaleria.obternerAdmin();
         admin.establecerLimiteCompras(this);
-        operador = OperadorGaleria.instanciaOperador();    }
+    }
 
     public String getNumeroTelefono() {
         return numeroTelefono;
@@ -58,8 +55,13 @@ public class Comprador extends Usuario {
 
     
      
-     public ArrayList<Pieza> getPiezasCompradas() {
+    public ArrayList<Pieza> getPiezasCompradas() {
 		return piezasCompradas;
+	}
+     
+    
+	public ArrayList<Pieza> getColeccion() {
+		return coleccion;
 	}
 
 	public HashMap<Pieza, String> getListapieza() {
@@ -83,18 +85,22 @@ public class Comprador extends Usuario {
     
     
     public void agregarPieza(Pieza pieza) {
-    	
+    	String nombre = pieza.getTituloObra();
+    	Integer valor = (Integer)pieza.getPrecio();
     	piezasCompradas.add(pieza);
-    	
+    	valorMaxCompras -= pieza.getPrecio();
     }
     
-    public void hacerOfertaVenta(Pieza pieza, String fecha) throws Exception {
-    	admin.verificarOfertaCompra(this, pieza, fecha);
+    public void agregarPiezaColeccion(Pieza pieza) {
+    	String nombre = pieza.getTituloObra();
+    	Integer valor = (Integer)pieza.getPrecio();
+    	coleccion.add(pieza);
+    }
+    
+    public void hacerOfertaVenta(Pieza pieza) throws Exception {
+    	admin.verificarOfertaCompra(this, pieza);
     }
     	
-    public void hacerOfertaSubasta(Pieza pieza, int valor, String fecha) throws Exception {
-    	operador.registrarOfertasSubasta(this, pieza, valor, fecha);
-    }
     	
     public void solicitarAumentoLimite() {
     	this.valorMaxCompras = admin.modificarLimiteCompras(this);

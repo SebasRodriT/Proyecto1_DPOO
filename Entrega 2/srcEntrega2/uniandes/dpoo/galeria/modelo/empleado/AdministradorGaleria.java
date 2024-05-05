@@ -11,27 +11,14 @@ import uniandes.dpoo.galeria.modelo.usuario.Comprador;
 import uniandes.dpoo.galeria.modelo.usuario.Usuario;
 
 public class AdministradorGaleria extends Empleado {
-	private static AdministradorGaleria administrador;
     private ArrayList<Pieza> inventario = new ArrayList<>();
     private HashMap<Integer, Comprador> compradoresRegistrados = new HashMap<>();
-    private Plataforma plataforma;
+    private Plataforma plataforma = new Plataforma();
     private static int limite = 1000000000;
-  
-    
-    
-    private AdministradorGaleria(String nombre, int identificacion, int edad) {
+
+    public AdministradorGaleria(String nombre, int identificacion, int edad) {
         super("Administrador", nombre, identificacion, edad);
-        this.plataforma = Plataforma.obtenerInstancia();
     }
-    
-   
-    
-    public static synchronized AdministradorGaleria obternerAdmin() {
-    	if (administrador == null) {
-    		administrador = new AdministradorGaleria("Juan Garcia", 10654218, 38);
-    	}
-    	return administrador;
-    } 
 
     public String getNombre() {
         return this.nombre;
@@ -49,11 +36,11 @@ public class AdministradorGaleria extends Empleado {
         inventario.add(pieza);
     }
 
-    public void confirmarVenta(Comprador comprador, Pieza pieza, String fecha) throws Exception {
+    public void confirmarVenta(Comprador comprador, Pieza pieza) throws Exception {
        
             String nombrePieza = pieza.getTituloObra();
             plataforma.vender(comprador, pieza);
-            pieza.marcarComoVendida(fecha);
+            pieza.marcarComoVendida();
             inventario.remove(pieza);
             comprador.agregarPieza(pieza);
             
@@ -92,13 +79,13 @@ public class AdministradorGaleria extends Empleado {
     }
     
     
-        public void verificarOfertaCompra(Comprador comprador, Pieza pieza, String fecha) throws Exception {
+        public void verificarOfertaCompra(Comprador comprador, Pieza pieza) throws Exception {
             int valor = pieza.getPrecio();
             int oferta = comprador.getValorMaxCompras();
            
             if (oferta>=valor) {
                 System.out.println("Oferta aceptada para la pieza: " + pieza.getTituloObra() + " por el comprador: " + comprador.getNombre());
-                confirmarVenta(comprador, pieza, fecha);
+                confirmarVenta(comprador, pieza);
             } else {
                 System.out.println("Oferta rechazada o inválida para la pieza: " + pieza.getTituloObra() + " por el comprador: " + comprador.getNombre());
             }
@@ -121,5 +108,29 @@ public class AdministradorGaleria extends Empleado {
     public void hacerDevolucion(Comprador comprador, int valor) {
     	comprador.actualizarSaldoDevolucion(valor);
     }
+    
+    //Requerimiento 3: Proyecto 2
+    // Verificar Historia Comprador: Historia de piezas que ha comprado
+    public void historiaPiezasCompradas(Comprador comprador, String fecha) {
+    	ArrayList<Pieza> piezas = comprador.getPiezasCompradas();
+    	System.out.println("Nombre: " + comprador.getNombre());
+    	System.out.println("Nombre Usuario: " + comprador.getNombreUsuario());
+    	for (int i = 0; i < piezas.size(); i++) {
+            String elemento = piezas.get(i).getTituloObra();
+            System.out.println("Titulo Obra:" + elemento);
+        }
+    }
+    
+    //Verificar historia de coleeccion: Historia de piezas que posee
+    public void historiaPiezasColeccion(Comprador comprador, String fecha) {
+    	ArrayList<Pieza> piezas = comprador.getPiezasCompradas();
+    	System.out.println("Nombre: " + comprador.getNombre());
+    	System.out.println("Nombre Usuario: " + comprador.getNombreUsuario());
+    	for (int i = 0; i < piezas.size(); i++) {
+            String elemento = piezas.get(i).getTituloObra();
+            System.out.println("Titulo Obra:" + elemento);
+        }
+    }
+    
 }
 

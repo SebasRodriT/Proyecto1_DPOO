@@ -12,7 +12,7 @@ public class Galeria {
 	private int cantidadPiezas;
 	private static ArrayList<Pieza> piezasExhibidas = new ArrayList<Pieza>();
     private static ArrayList<Pieza> piezasBodega = new ArrayList<Pieza>();
-    private ArrayList<Pieza> historicoPiezas = new ArrayList<Pieza>();
+    private static ArrayList<Pieza> historicoPiezas = new ArrayList<Pieza>();
     private static Plataforma plataforma = new Plataforma();
 
     public Galeria(String ubicacion, int cantidadPiezas) {
@@ -33,10 +33,12 @@ public class Galeria {
     	boolean encontrado = false;
         
         for (int i = 0; i < usuarios.size(); i++) {
-            if (usuarios.get(i).getNombre().equals(comprador.getNombre())) {
-                encontrado = true;
-                break;
-            }
+        	 if (usuarios != null && usuarios.get(i).getNombre() != null) {
+	            if (usuarios.get(i).getNombre().equals(comprador.getNombre())) {
+	                encontrado = true;
+	                break;
+	            }
+        	 }
         }
         
         if (encontrado) {
@@ -131,8 +133,8 @@ public class Galeria {
     public static Pieza buscarPiezahistorico(Pieza pieza) {
     	Pieza piezaEncontrada = null;
     	String tituloObra = pieza.getTituloObra();
-    	for (int i = 0; i < piezasBodega.size(); i++) {
-    	    Pieza piezaLista = piezasBodega.get(i);
+    	for (int i = 0; i < historicoPiezas.size(); i++) {
+    	    Pieza piezaLista = historicoPiezas.get(i);
     	    if (piezaLista.getTituloObra().equals(tituloObra)) {
     	        piezaEncontrada = piezaLista;
     	        break; // Terminamos la búsqueda si encontramos la pieza

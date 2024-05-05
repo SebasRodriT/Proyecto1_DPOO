@@ -1,21 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-<<<<<<< HEAD
-	<name>Entrega2</name>
-	<comment></comment>
-	<projects>
-	</projects>
-	<buildSpec>
-		<buildCommand>
-			<name>org.eclipse.jdt.core.javabuilder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-	</buildSpec>
-	<natures>
-		<nature>org.eclipse.jdt.core.javanature</nature>
-	</natures>
-=======
 	<name>Entrega 2</name>
 	<comment></comment>
 	<projects>
@@ -32,7 +16,7 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1713496279048</id>
+			<id>1713496279049</id>
 			<name></name>
 			<type>30</type>
 			<matcher>
@@ -41,5 +25,4 @@
 			</matcher>
 		</filter>
 	</filteredResources>
->>>>>>> branch 'main' of https://github.com/SebasRodriT/Proyecto1_DPOO.git
 </projectDescription>

@@ -18,7 +18,7 @@ public class AdministradorGaleria extends Empleado {
 
     public AdministradorGaleria(String nombre, int identificacion, int edad) {
         super("Administrador", nombre, identificacion, edad);
-        plataforma = Plataforma.obtenerInstancia();
+        this.plataforma = Plataforma.obtenerInstancia();
     }
 
     public String getNombre() {

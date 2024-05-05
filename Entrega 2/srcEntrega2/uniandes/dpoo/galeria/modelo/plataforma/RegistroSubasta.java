@@ -6,13 +6,23 @@ import uniandes.dpoo.galeria.modelo.Pieza;
 import uniandes.dpoo.galeria.modelo.usuario.Comprador;
 import uniandes.dpoo.galeria.modelo.usuario.Usuario;
 
-public class Subasta {
+public class RegistroSubasta {
+	
+	private static RegistroSubasta subasta;
 	private static ArrayList<String> piezasSubastadas = new ArrayList<String>();
 	private static ArrayList<String> usuariosSubasta = new ArrayList<String>();
 	private static HashMap<String, HashMap<String, Integer>> ofertasAceptadasSubastas = new HashMap<String, HashMap<String, Integer>>();
 
 
-	public Subasta(){}
+	private RegistroSubasta(){}
+	
+	public static synchronized RegistroSubasta registro(){
+		
+		if(subasta == null) {
+			subasta = new RegistroSubasta();
+		}
+		return subasta;
+	}
 	
 	public void agregarPiezaASubastar(Pieza pieza) {
 		
@@ -34,7 +44,7 @@ public class Subasta {
 	}
 	
 	public HashMap<String, HashMap<String, Integer>> getOfertas(){
-		return Subasta.ofertasAceptadasSubastas;
+		return RegistroSubasta.ofertasAceptadasSubastas;
 	}
 	
 	

@@ -17,7 +17,7 @@ public class Pago {
 		Integer numeroF = numeroFactura+1;
 		comprador.actualizarSaldo(nPrecio);
 		pagos.put(numeroF, comprador);
-		registrarPago(comprador, String.valueOf(nPrecio));
+		cajero.registrarPago(comprador, this);
 		
 	}
 
@@ -29,10 +29,6 @@ public class Pago {
 		return precio;
 	}
 	
-	
-	public void registrarPago(Comprador comprador, String valor) {
-		cajero.registrarPago(comprador, valor);
-	}
 
 	}
 

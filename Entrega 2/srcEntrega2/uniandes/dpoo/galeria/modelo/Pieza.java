@@ -11,6 +11,7 @@ public class Pieza {
 	protected Artista autor;
 	protected boolean exhibido;
 	protected String tematica;
+	protected String fechaVenta;
 	
 	//Agregar uml y get
 	protected int precio;
@@ -27,6 +28,7 @@ public class Pieza {
 		this.exhibido = exhibido;
 		this.tematica = tematica;
 		this.precio = precio;
+		this.fechaVenta = "";
 	}
 
 	public boolean isVendida() {
@@ -61,12 +63,14 @@ public class Pieza {
 		return precio;
 	}
 	
-	public void marcarComoVendida() {
+	public void marcarComoVendida(String fecha) {
 		this.vendida = true;
+		this.fechaVenta = fecha;
 	}
 
 	public void marcarComoDevolucion() {
 		vendida = false;
+		this.fechaVenta = "";
 	}
 	
 	public void agregarPiezainventario(Pieza pieza) {

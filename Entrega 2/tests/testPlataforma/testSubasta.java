@@ -24,14 +24,13 @@ public class testSubasta {
 
 	private Artista vG = new Artista("Vincent van Gogh", "Pintor");
 	private Pintura lNE = new Pintura("óleo sobre lienzo","impresionismo", 73.7, 92.1, false, "La Noche Estrellada", 1889, "Saint Rémy de Provence",vG, true, "Paisaje", 800000000);
-	private OperadorGaleria operador = new OperadorGaleria("Andres Rios", 11254697, 45);
 	private Comprador comprador1 = new Comprador("Felipe Gonzales", 11579875, 28, "f.gon", "F123G", "3124257895", "g.gon@gmail.com", 900000000);
 	private Comprador comprador2 = new Comprador("Ana María", 32548901, 34, "a.maria", "AM34A", "3156781234", "ana.maria@gmail.com",1000000000);
 	private Comprador comprador3 = new Comprador("Carlos Rodríguez", 10234876, 45, "c.rod", "CR45R", "3175498765", "carlos.rod@gmail.com", 1500000000);
 	private Comprador comprador4 = new Comprador("Lucía Hernández", 48576234, 29, "l.hernan", "LH29H", "3109876543", "lucia.hernan@gmail.com", 2000000000);
 	private Comprador comprador5 = new Comprador("Juan Pérez", 29713485, 38, "j.perez", "JP38P", "3123475689", "juan.perez@gmail.com", 2100000000);
 	
-	
+	"""
 	
 	@Test 
 	public void testPiezaASubastar() throws Exception {
@@ -52,6 +51,6 @@ public class testSubasta {
 		operador.registrarOfertasSubasta(comprador1, lNE, 800000000);
 		operador.registrarOfertasSubasta(comprador2, lNE, 900000000);
 		Exception exception = assertThrows(Exception.class, () -> {operador.identificarPostorGanador(lNE);});
-}}
+}}"""
 
 

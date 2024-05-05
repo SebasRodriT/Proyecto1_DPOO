@@ -12,13 +12,26 @@ import uniandes.dpoo.galeria.modelo.usuario.Comprador;
 import uniandes.dpoo.galeria.modelo.usuario.Usuario;
 
 public class Plataforma {
-
-	private static ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
-	private Subasta subasta;
 	
-	public Plataforma() {
-		subasta = new Subasta();
+	private static Plataforma plataforma;
+	private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+	private RegistroSubasta subasta;
+	private RegistroVenta venta;
+
+	
+	
+	private Plataforma() {
+		subasta = RegistroSubasta.registro();
+		venta = RegistroVenta.instancia();
+		
 	}
+	
+	public static synchronized Plataforma obtenerInstancia() {
+        if (plataforma == null) {
+        	plataforma = new Plataforma();
+        }
+        return plataforma;
+    }
 	
 	
 	public void vender(Comprador comprador, Pieza pieza) throws Exception {
@@ -33,7 +46,7 @@ public class Plataforma {
 	}
 	
 	
-	public Comprador subastar(Pieza pieza) throws Exception {
+	public Comprador subastar(Pieza pieza, String fecha) throws Exception {
 		
 		HashMap<String, HashMap<String, Integer>> ofertas = subasta.getOfertas();
 		HashMap<String, Integer> ofertasPieza = ofertas.get(pieza.getTituloObra());
@@ -50,7 +63,7 @@ public class Plataforma {
 		Comprador ganadorSubasta= encontrarComprador(ganador);
 		Pago pago = new Pago(ganadorSubasta, mayor);
 		ganadorSubasta.agregarPieza(pieza);
-		pieza.marcarComoVendida();
+		pieza.marcarComoVendida(fecha);
 		return ganadorSubasta;}
 	else {
 		throw new Exception ("Personas insuficientes para ejecutar la subasta");
@@ -78,7 +91,7 @@ public class Plataforma {
 		return comprador;
     		}
     	
-	public static ArrayList<Usuario> getUsuarios() {
+	public ArrayList<Usuario> getUsuarios() {
 		return usuarios;
 	}
 }

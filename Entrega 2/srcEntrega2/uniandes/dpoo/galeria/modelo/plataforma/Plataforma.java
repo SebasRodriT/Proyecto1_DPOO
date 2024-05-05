@@ -63,7 +63,7 @@ public class Plataforma {
 		Comprador ganadorSubasta= encontrarComprador(ganador);
 		Pago pago = new Pago(ganadorSubasta, mayor);
 		ganadorSubasta.agregarPieza(pieza);
-		pieza.marcarComoVendida();
+		pieza.marcarComoVendida(fecha);
 		return ganadorSubasta;}
 	else {
 		throw new Exception ("Personas insuficientes para ejecutar la subasta");

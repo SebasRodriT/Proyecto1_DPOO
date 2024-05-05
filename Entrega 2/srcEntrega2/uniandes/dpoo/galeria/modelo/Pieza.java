@@ -9,6 +9,7 @@ public class Pieza {
 	protected Artista autor;
 	protected boolean exhibido;
 	protected String tematica;
+	protected String fecha;
 
 	protected int precio;
 	
@@ -57,8 +58,9 @@ public class Pieza {
 		return precio;
 	}
 	
-	public void marcarComoVendida() {
+	public void marcarComoVendida(String nFecha) {
 		this.vendida = true;
+		this.fecha = nFecha;
 	}
 
 	public void marcarComoDevolucion() {

@@ -30,14 +30,16 @@ public class testGaleria {
     
 	@Test
 	public void testVerificarCompradorExistente() {
-		Plataforma plataforma = new Plataforma();
+		Plataforma plataforma;
+		plataforma = Plataforma.obtenerInstancia();
 		boolean encontrado = Galeria.verificarComprador(compradorExistente);
         assertTrue(encontrado, "El comprador existente debería haber sido encontrado"); 
 	}
 	
 	@Test
 	void testCompradorNoExistente() {
-        Plataforma plataforma = new Plataforma();
+        Plataforma plataforma;
+        plataforma = Plataforma.obtenerInstancia();
         boolean resultado = Galeria.verificarComprador(compradorNoExistente);
         assertFalse(resultado, "El comprador no existente no debería haber sido encontrado");
     }

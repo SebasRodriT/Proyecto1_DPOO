@@ -18,7 +18,7 @@ public class Comprador extends Usuario {
     private HashMap<Pieza, String> listapieza;
     private ArrayList<Pieza> coleccion;
     private int saldo;
-    private Plataforma plataforma = new Plataforma();
+    private Plataforma plataforma;
     private static AdministradorGaleria admin = new AdministradorGaleria("Martin Castro",12846975,32);
     
 
@@ -29,6 +29,7 @@ public class Comprador extends Usuario {
         this.correo = correo;
         this.piezasCompradas = new ArrayList<>();
         this.saldo = saldo;
+        plataforma = Plataforma.obtenerInstancia();
         plataforma.registrarUsuario(this);
         admin.establecerLimiteCompras(this);
     }

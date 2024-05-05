@@ -13,11 +13,12 @@ public class Galeria {
 	private static ArrayList<Pieza> piezasExhibidas = new ArrayList<Pieza>();
     private static ArrayList<Pieza> piezasBodega = new ArrayList<Pieza>();
     private static ArrayList<Pieza> historicoPiezas = new ArrayList<Pieza>();
-    private static Plataforma plataforma = new Plataforma();
+    private Plataforma plataforma;
 
     public Galeria(String ubicacion, int cantidadPiezas) {
     	this.ubicacion = ubicacion;
     	this.cantidadPiezas = cantidadPiezas;
+    	plataforma = Plataforma.obtenerInstancia();
     }
 
 	public String getUbicacion() {

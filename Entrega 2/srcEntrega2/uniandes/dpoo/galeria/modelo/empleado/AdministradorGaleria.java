@@ -13,11 +13,12 @@ import uniandes.dpoo.galeria.modelo.usuario.Usuario;
 public class AdministradorGaleria extends Empleado {
     private ArrayList<Pieza> inventario = new ArrayList<>();
     private HashMap<Integer, Comprador> compradoresRegistrados = new HashMap<>();
-    private Plataforma plataforma = new Plataforma();
+    private Plataforma plataforma;
     private static int limite = 1000000000;
 
     public AdministradorGaleria(String nombre, int identificacion, int edad) {
         super("Administrador", nombre, identificacion, edad);
+        plataforma = Plataforma.obtenerInstancia();
     }
 
     public String getNombre() {

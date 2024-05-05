@@ -29,7 +29,7 @@ public class Galeria {
 		return cantidadPiezas;
 	}
     
-    public static boolean verificarComprador(Comprador comprador) {
+    public boolean verificarComprador(Comprador comprador) {
     	ArrayList<Usuario> usuarios = plataforma.getUsuarios();
     	boolean encontrado = false;
         

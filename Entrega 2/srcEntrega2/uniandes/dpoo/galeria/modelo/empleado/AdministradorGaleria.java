@@ -13,10 +13,21 @@ public class AdministradorGaleria extends Empleado {
     private ArrayList<Pieza> inventario = new ArrayList<>();
     private static int limite = 1000000000;
     private Plataforma plataforma = Plataforma.obtenerInstancia();
-
-    public AdministradorGaleria(String nombre, int identificacion, int edad) {
+    private static AdministradorGaleria administrador;
+    
+    
+    private AdministradorGaleria(String nombre, int identificacion, int edad) {
         super("Administrador", nombre, identificacion, edad);
+        this.plataforma = Plataforma.obtenerInstancia();
     }
+    
+   
+    public static synchronized AdministradorGaleria obternerAdmin() {
+    	if (administrador == null) {
+    		administrador = new AdministradorGaleria("Juan Garcia", 10654218, 38);
+    	}
+    	return administrador;
+    } 
 
     public String getNombre() {
         return this.nombre;

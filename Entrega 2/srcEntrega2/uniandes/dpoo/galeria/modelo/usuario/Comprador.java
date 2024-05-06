@@ -7,8 +7,9 @@ import java.util.HashMap;
 
 import uniandes.dpoo.galeria.modelo.Pieza;
 import uniandes.dpoo.galeria.modelo.empleado.AdministradorGaleria;
+import uniandes.dpoo.galeria.modelo.empleado.OperadorGaleria;
 import uniandes.dpoo.galeria.modelo.plataforma.Plataforma;
-import uniandes.dpoo.galeria.modelo.plataforma.Subasta;
+
 
 public class Comprador extends Usuario {
     private String numeroTelefono;
@@ -19,9 +20,9 @@ public class Comprador extends Usuario {
     private ArrayList<Pieza> coleccion;
     private int saldo;
     private Plataforma plataforma;
-    private static AdministradorGaleria admin = new AdministradorGaleria("Martin Castro",12846975,32);
+    private AdministradorGaleria admin;
+    private OperadorGaleria operador;
     
-
     public Comprador(String nombre, int identificacion, int edad, String nombreUsuario, String password,
                      String numeroTelefono, String correo, int saldo) {
         super(nombre, identificacion, edad, nombreUsuario, password, "Comprador");
@@ -31,7 +32,9 @@ public class Comprador extends Usuario {
         this.saldo = saldo;
         plataforma = Plataforma.obtenerInstancia();
         plataforma.registrarUsuario(this);
+        admin = AdministradorGaleria.obternerAdmin();
         admin.establecerLimiteCompras(this);
+        operador = OperadorGaleria.instanciaOperador();
     }
 
     public String getNumeroTelefono() {
@@ -100,6 +103,10 @@ public class Comprador extends Usuario {
     
     public void hacerOfertaVenta(Pieza pieza, String fecha) throws Exception {
     	admin.verificarOfertaCompra(this, pieza, fecha);
+    }
+    
+    public void hacerOfertaSubasta(Pieza pieza, int valor, String fecha) throws Exception {
+    	operador.registrarOfertasSubasta(this, pieza, valor, fecha);
     }
     	
     	

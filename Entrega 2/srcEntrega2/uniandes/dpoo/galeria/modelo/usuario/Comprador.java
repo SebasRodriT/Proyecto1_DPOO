@@ -98,8 +98,8 @@ public class Comprador extends Usuario {
     	coleccion.add(pieza);
     }
     
-    public void hacerOfertaVenta(Pieza pieza) throws Exception {
-    	admin.verificarOfertaCompra(this, pieza);
+    public void hacerOfertaVenta(Pieza pieza, String fecha) throws Exception {
+    	admin.verificarOfertaCompra(this, pieza, fecha);
     }
     	
     	

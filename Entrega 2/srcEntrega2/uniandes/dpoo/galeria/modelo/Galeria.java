@@ -2,10 +2,9 @@ package uniandes.dpoo.galeria.modelo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import uniandes.dpoo.galeria.modelo.plataforma.Plataforma;
 import uniandes.dpoo.galeria.modelo.usuario.Comprador;
 import uniandes.dpoo.galeria.modelo.usuario.Usuario;
+import uniandes.dpoo.galeria.modelo.plataforma.Plataforma;
 
 public class Galeria {
 	private String ubicacion;
@@ -14,6 +13,7 @@ public class Galeria {
     private static ArrayList<Pieza> piezasBodega = new ArrayList<Pieza>();
     private static ArrayList<Pieza> historicoPiezas = new ArrayList<Pieza>();
     private Plataforma plataforma;
+    private ArrayList<Usuario> usuarios = plataforma.getUsuarios();
 
     public Galeria(String ubicacion, int cantidadPiezas) {
     	this.ubicacion = ubicacion;
@@ -29,10 +29,9 @@ public class Galeria {
 		return cantidadPiezas;
 	}
     
-   
+	 
 	public boolean verificarComprador(Comprador comprador) {
-    	ArrayList<Usuario> usuarios = plataforma.getUsuarios();
-    	boolean encontrado = false;
+	    	boolean encontrado = false;
         
         for (int i = 0; i < usuarios.size(); i++) {
         	 if (usuarios != null && usuarios.get(i).getNombre() != null) {

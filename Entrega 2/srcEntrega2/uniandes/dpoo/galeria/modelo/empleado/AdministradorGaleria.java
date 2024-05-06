@@ -3,7 +3,6 @@ package uniandes.dpoo.galeria.modelo.empleado;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.junit.Test.None;
 
 import uniandes.dpoo.galeria.modelo.Pieza;
 import uniandes.dpoo.galeria.modelo.plataforma.Plataforma;
@@ -12,13 +11,11 @@ import uniandes.dpoo.galeria.modelo.usuario.Usuario;
 
 public class AdministradorGaleria extends Empleado {
     private ArrayList<Pieza> inventario = new ArrayList<>();
-    private HashMap<Integer, Comprador> compradoresRegistrados = new HashMap<>();
-    private Plataforma plataforma;
     private static int limite = 1000000000;
+    private Plataforma plataforma = Plataforma.obtenerInstancia();
 
     public AdministradorGaleria(String nombre, int identificacion, int edad) {
         super("Administrador", nombre, identificacion, edad);
-        this.plataforma = Plataforma.obtenerInstancia();
     }
 
     public String getNombre() {
@@ -37,11 +34,11 @@ public class AdministradorGaleria extends Empleado {
         inventario.add(pieza);
     }
 
-    public void confirmarVenta(Comprador comprador, Pieza pieza) throws Exception {
+    public void confirmarVenta(Comprador comprador, Pieza pieza, String fecha) throws Exception {
        
-            String nombrePieza = pieza.getTituloObra();
+        
             plataforma.vender(comprador, pieza);
-            pieza.marcarComoVendida();
+            pieza.marcarComoVendida(fecha);
             inventario.remove(pieza);
             comprador.agregarPieza(pieza);
             
@@ -80,13 +77,13 @@ public class AdministradorGaleria extends Empleado {
     }
     
     
-        public void verificarOfertaCompra(Comprador comprador, Pieza pieza) throws Exception {
+        public void verificarOfertaCompra(Comprador comprador, Pieza pieza, String fecha) throws Exception {
             int valor = pieza.getPrecio();
             int oferta = comprador.getValorMaxCompras();
            
             if (oferta>=valor) {
                 System.out.println("Oferta aceptada para la pieza: " + pieza.getTituloObra() + " por el comprador: " + comprador.getNombre());
-                confirmarVenta(comprador, pieza);
+                confirmarVenta(comprador, pieza, fecha);
             } else {
                 System.out.println("Oferta rechazada o inválida para la pieza: " + pieza.getTituloObra() + " por el comprador: " + comprador.getNombre());
             }

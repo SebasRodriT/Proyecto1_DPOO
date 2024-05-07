@@ -2,11 +2,21 @@ package uniandes.dpoo.galeria.modelo;
 
 import java.util.ArrayList;
 
+import uniandes.dpoo.galeria.modelo.plataforma.Plataforma;
+
 public class Inventario {
 	private ArrayList<Pieza> inventarioPiezas = new ArrayList<Pieza>();
+	private static Inventario inventario;
 	
 	public Inventario() {
 	}
+	
+	public synchronized static Inventario obtenerInstanciaInv() {
+        if (inventario == null) {
+        	inventario = new Inventario();
+        }
+        return inventario;
+    }
 	
 	public void agregarPiezainventario(Pieza pieza) {
 		this.inventarioPiezas.add(pieza);

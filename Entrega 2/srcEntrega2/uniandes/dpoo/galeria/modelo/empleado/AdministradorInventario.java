@@ -4,8 +4,11 @@ import java.util.ArrayList;
 
 import uniandes.dpoo.galeria.modelo.Inventario;
 import uniandes.dpoo.galeria.modelo.Pieza;
+import uniandes.dpoo.galeria.modelo.plataforma.Plataforma;
 
 public class AdministradorInventario extends Empleado{
+	private Inventario inventario = Inventario.obtenerInstanciaInv();
+	
 	public AdministradorInventario(String nombre, int identificacion, int edad) {
         super("Administrador Inventario", nombre, identificacion, edad);
     }
@@ -22,7 +25,7 @@ public class AdministradorInventario extends Empleado{
         return this.edad;
     }
     
-    public static Pieza buscarPiezaInventario(Pieza pieza, Inventario inventario) {
+    public static Pieza buscarPiezaInventario(Pieza pieza) {
 		Pieza piezaEncontrada = null;
     	String tituloObra = pieza.getTituloObra();
     	ArrayList<Pieza> inventarioPiezas = inventario.getInventarioPiezas();
@@ -46,7 +49,7 @@ public class AdministradorInventario extends Empleado{
     	}
 	}
     
-    public Pieza buscarPieza(String nombre, Inventario inventario) {
+    public Pieza buscarPieza(String nombre) {
 		Pieza rta = null;
 		ArrayList<Pieza> inventarioPiezas = inventario.getInventarioPiezas();
 		for (int i = 0; i < inventario.getInventarioPiezas().size(); i++) {

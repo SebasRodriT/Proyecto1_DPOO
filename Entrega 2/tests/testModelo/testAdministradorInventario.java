@@ -22,7 +22,7 @@ public class testAdministradorInventario {
 	@Test
 	public void testBuscarPiezaInventario() {
 		inv.agregarPiezainventario(pieza);
-		Pieza piezaEncontrada = adminInventario.buscarPiezaInventario(pieza, inv);
+		Pieza piezaEncontrada = adminInventario.buscarPiezaInventario(pieza);
 		assertNotNull(piezaEncontrada, "La pieza debería haber sido encontrada");
 		assertEquals(pieza.getTituloObra(), piezaEncontrada.getTituloObra(), "El título de la obra debe coincidir");
 	}
@@ -34,7 +34,7 @@ public class testAdministradorInventario {
 	@SuppressWarnings("static-access")
 	@Test
     public void testBuscarPiezaInventarioNoExistente() {
-        Pieza piezaNoEncontrada = adminInventario.buscarPiezaInventario(new Pieza(false,"La Noche Estrellada", 1889, "Países Bajos", new Artista("Vincent Van Gogh", "Pintor"), false, "Impresionismo",  15689586 ), inv);
+        Pieza piezaNoEncontrada = adminInventario.buscarPiezaInventario(new Pieza(false,"La Noche Estrellada", 1889, "Países Bajos", new Artista("Vincent Van Gogh", "Pintor"), false, "Impresionismo",  15689586 ));
         assertNull(piezaNoEncontrada); 
     }
 }

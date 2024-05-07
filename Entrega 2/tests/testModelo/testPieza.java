@@ -13,7 +13,8 @@ public class testPieza {
 	
 	@Test
 	public void testMarcarComoVendida() throws Exception{
-		pieza.marcarComoVendida();
+		String fecha = "19/01/2010";
+		pieza.marcarComoVendida(fecha);
 		assertTrue(pieza.isVendida());
 	}
 	

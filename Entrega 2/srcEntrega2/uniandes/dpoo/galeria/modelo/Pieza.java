@@ -23,6 +23,7 @@ public class Pieza {
 		this.exhibido = exhibido;
 		this.tematica = tematica;
 		this.precio = precio;
+		this.fecha = "No vendida";
 
 	}
 

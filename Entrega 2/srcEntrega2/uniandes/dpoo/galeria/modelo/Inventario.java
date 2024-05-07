@@ -30,5 +30,13 @@ public class Inventario {
 		return inventarioPiezas;
 	}
 
+	public Pieza buscarPieza(String nombrePieza) {
+		for (Pieza nPieza: inventarioPiezas) {
+			if (nPieza.getTituloObra().equalsIgnoreCase(nombrePieza)){
+				return nPieza;
+			}
+		}
+		return null;
+	}
 
 }

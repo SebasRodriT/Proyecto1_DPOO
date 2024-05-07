@@ -53,7 +53,7 @@ public class Galeria {
     }
     
     public void agregarPiezaExhibida(Pieza pieza) {
-    	this.piezasExhibidas.add(pieza);
+    	Galeria.piezasExhibidas.add(pieza);
     }
     
     public ArrayList<Pieza> getPiezasExhibidas() {
@@ -69,20 +69,20 @@ public class Galeria {
 	}
 
 	public void agregarPiezaBodega(Pieza pieza) {
-    	this.piezasBodega.add(pieza);
+    	Galeria.piezasBodega.add(pieza);
     }
     
     public void agregarPiezaHistorico(Pieza pieza) {
-    	this.historicoPiezas.add(pieza);
+    	Galeria.historicoPiezas.add(pieza);
     	
     }
     
     public void eliminarPiezaExhibida(Pieza pieza) {
-    	this.piezasExhibidas.remove(pieza);
+    	Galeria.piezasExhibidas.remove(pieza);
     }
     
     public void eliminarPiezaBodega(Pieza pieza) {
-    	this.piezasBodega.remove(pieza);
+    	Galeria.piezasBodega.remove(pieza);
     }
     
     public static Pieza buscarPiezaExhibida(Pieza pieza) {

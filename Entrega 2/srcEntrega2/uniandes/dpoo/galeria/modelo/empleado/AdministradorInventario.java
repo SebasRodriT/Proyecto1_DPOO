@@ -25,7 +25,7 @@ public class AdministradorInventario extends Empleado{
         return this.edad;
     }
     
-    public static Pieza buscarPiezaInventario(Pieza pieza) {
+    public Pieza buscarPiezaInventario(Pieza pieza) {
 		Pieza piezaEncontrada = null;
     	String tituloObra = pieza.getTituloObra();
     	ArrayList<Pieza> inventarioPiezas = inventario.getInventarioPiezas();

@@ -94,4 +94,6 @@ public class Plataforma {
 	public ArrayList<Usuario> getUsuarios() {
 		return usuarios;
 	}
+	
+	
 }

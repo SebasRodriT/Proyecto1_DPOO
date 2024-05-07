@@ -9,12 +9,13 @@ public class Pago {
 	
 	private int numeroFactura = 1;
 	private int precio;
-	private static CajeroGaleria cajero = new CajeroGaleria("Sebastian Rios", 11364587, 40);
+	private CajeroGaleria cajero; 
 	
 	public Pago(Comprador comprador, int nPrecio) {
 		this.precio = nPrecio;
 		this.numeroFactura += 1;
 		comprador.actualizarSaldo(nPrecio);
+		cajero = CajeroGaleria.obternerCajero();
 		cajero.registrarPago(comprador, this);
 		
 	}

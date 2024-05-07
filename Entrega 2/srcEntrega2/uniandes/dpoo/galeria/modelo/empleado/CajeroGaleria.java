@@ -13,14 +13,22 @@ import uniandes.dpoo.galeria.modelo.pago.Pago;
 
 public class CajeroGaleria extends Empleado {
 
+	private static CajeroGaleria cajero;
 	private Inventario inventarioGaleria;
     private HashMap<String, Pago>registroPagos;
 
-    public CajeroGaleria(String nombre, int identificacion, int edad) {
+    private CajeroGaleria(String nombre, int identificacion, int edad) {
         super("Cajero", nombre, identificacion, edad);
         registroPagos = new HashMap<>();
         this.inventarioGaleria = Inventario.obtenerInstanciaInv();        
     }
+    
+    public static synchronized CajeroGaleria obternerCajero() {
+    	if (cajero == null) {
+    		cajero = new CajeroGaleria("Sebastian Rios", 11364587, 40);
+    	}
+    	return cajero;
+    } 
 
    
     public void registrarPago(Comprador comprador, Pago pago) {     

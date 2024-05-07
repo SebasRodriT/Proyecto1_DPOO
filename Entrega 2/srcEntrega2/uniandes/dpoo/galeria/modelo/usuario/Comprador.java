@@ -5,6 +5,7 @@ package uniandes.dpoo.galeria.modelo.usuario;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import uniandes.dpoo.galeria.modelo.Inventario;
 import uniandes.dpoo.galeria.modelo.Pieza;
 import uniandes.dpoo.galeria.modelo.empleado.AdministradorGaleria;
 import uniandes.dpoo.galeria.modelo.empleado.OperadorGaleria;
@@ -22,6 +23,7 @@ public class Comprador extends Usuario {
     private Plataforma plataforma;
     private AdministradorGaleria admin;
     private OperadorGaleria operador;
+    private Inventario inventarioGaleria;
     
     public Comprador(String nombre, int identificacion, int edad, String nombreUsuario, String password,
                      String numeroTelefono, String correo, int saldo) {
@@ -35,6 +37,7 @@ public class Comprador extends Usuario {
         admin = AdministradorGaleria.obternerAdmin();
         admin.establecerLimiteCompras(this);
         operador = OperadorGaleria.instanciaOperador();
+        this.inventarioGaleria = Inventario.obtenerInstanciaInv();   
     }
 
     public String getNumeroTelefono() {
@@ -120,5 +123,10 @@ public class Comprador extends Usuario {
     		this.piezasCompradas.remove(pieza);
     	}
     }
+    
+    public Pieza ConsultarPieza(String nombre) {
+    	return inventarioGaleria.buscarPieza(nombre);
+    }
+
     }
 

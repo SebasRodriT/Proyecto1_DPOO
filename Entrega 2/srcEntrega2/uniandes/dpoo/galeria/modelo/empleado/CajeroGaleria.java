@@ -1,5 +1,6 @@
 package uniandes.dpoo.galeria.modelo.empleado;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import uniandes.dpoo.galeria.modelo.usuario.Comprador;
@@ -35,7 +36,10 @@ public class CajeroGaleria extends Empleado {
     public Pieza ConsultarPieza(String nombre) {
     	return inventarioGaleria.buscarPieza(nombre);
     }
-
+    
+    public ArrayList<Pieza> consultarHistoriaArtista(String nombre){
+    	return inventarioGaleria.historiaArtista(nombre);
+    }
 
 }
 

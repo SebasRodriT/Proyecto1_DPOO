@@ -3,7 +3,6 @@ package uniandes.dpoo.galeria.modelo;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import uniandes.dpoo.galeria.modelo.plataforma.Plataforma;
 
 public class Inventario {
 	private ArrayList<Pieza> inventarioPiezas = new ArrayList<Pieza>();
@@ -44,6 +43,13 @@ public class Inventario {
 			if (nPieza.getTituloObra().equalsIgnoreCase(nombrePieza)){
 				return nPieza;
 			}
+		}
+		return null;
+	}
+	
+	public ArrayList<Pieza> historiaArtista(String nombreArtista){
+		if (inventarioArtistas.containsKey(nombreArtista)) {
+			return inventarioArtistas.get(nombreArtista);
 		}
 		return null;
 	}

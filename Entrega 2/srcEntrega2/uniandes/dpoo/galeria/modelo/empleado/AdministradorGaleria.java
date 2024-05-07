@@ -147,5 +147,10 @@ public class AdministradorGaleria extends Empleado {
     	return inventarioGaleria.buscarPieza(nombre);
     }
     
+    public ArrayList<Pieza> consultarHistoriaArtista(String nombre){
+    	return inventarioGaleria.historiaArtista(nombre);
+    }
+    
+    
 }
 

@@ -86,5 +86,9 @@ public class OperadorGaleria extends Empleado {
     public Pieza ConsultarPieza(String nombre) {
     	return inventarioGaleria.buscarPieza(nombre);
     }
+    
+    public ArrayList<Pieza> consultarHistoriaArtista(String nombre){
+    	return inventarioGaleria.historiaArtista(nombre);
+    }
    
 }

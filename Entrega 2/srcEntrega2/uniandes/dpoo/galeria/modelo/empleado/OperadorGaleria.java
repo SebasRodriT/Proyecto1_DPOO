@@ -2,6 +2,7 @@ package uniandes.dpoo.galeria.modelo.empleado;
 
 import java.util.HashMap;
 
+import uniandes.dpoo.galeria.modelo.Inventario;
 import uniandes.dpoo.galeria.modelo.Pieza;
 import uniandes.dpoo.galeria.modelo.plataforma.Plataforma;
 import uniandes.dpoo.galeria.modelo.plataforma.RegistroSubasta;
@@ -17,6 +18,7 @@ public class OperadorGaleria extends Empleado {
     private HashMap<Pieza, HashMap<Usuario, Integer>> ofertasPorSubasta;
     private RegistroSubasta subasta;
     private Plataforma plataforma;
+    private Inventario inventarioGaleria;
 
     private OperadorGaleria(String nombre, int identificacion, int edad) {
         super("Operador", nombre, identificacion, edad);
@@ -25,6 +27,7 @@ public class OperadorGaleria extends Empleado {
         ofertasPorSubasta = new HashMap<>();
         plataforma = Plataforma.obtenerInstancia();
         subasta = RegistroSubasta.registro();
+        this.inventarioGaleria = Inventario.obtenerInstanciaInv();
     }
     
     public static synchronized OperadorGaleria instanciaOperador() {
@@ -80,6 +83,8 @@ public class OperadorGaleria extends Empleado {
         }
     }
 
-  
+    public Pieza ConsultarPieza(String nombre) {
+    	return inventarioGaleria.buscarPieza(nombre);
+    }
    
 }

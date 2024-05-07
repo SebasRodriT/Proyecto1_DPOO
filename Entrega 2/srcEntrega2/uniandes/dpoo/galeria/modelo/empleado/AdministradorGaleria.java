@@ -3,7 +3,7 @@ package uniandes.dpoo.galeria.modelo.empleado;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
+import uniandes.dpoo.galeria.modelo.Inventario;
 import uniandes.dpoo.galeria.modelo.Pieza;
 import uniandes.dpoo.galeria.modelo.plataforma.Plataforma;
 import uniandes.dpoo.galeria.modelo.usuario.Comprador;
@@ -14,11 +14,13 @@ public class AdministradorGaleria extends Empleado {
     private static int limite = 1000000000;
     private Plataforma plataforma = Plataforma.obtenerInstancia();
     private static AdministradorGaleria administrador;
+    private Inventario inventarioGaleria;
     
     
     private AdministradorGaleria(String nombre, int identificacion, int edad) {
         super("Administrador", nombre, identificacion, edad);
         this.plataforma = Plataforma.obtenerInstancia();
+        this.inventarioGaleria = Inventario.obtenerInstanciaInv();
     }
     
    
@@ -139,6 +141,10 @@ public class AdministradorGaleria extends Empleado {
             String elemento = piezas.get(i).getTituloObra();
             System.out.println("Titulo Obra:" + elemento);
         }
+    }
+    
+    public Pieza ConsultarPieza(String nombre) {
+    	return inventarioGaleria.buscarPieza(nombre);
     }
     
 }

@@ -151,6 +151,16 @@ public class AdministradorGaleria extends Empleado {
     	return inventarioGaleria.historiaArtista(nombre);
     }
     
+    public boolean confirmarVenta(String nombre) {
+    	Pieza p = ConsultarPieza(nombre);
+    	return p.isVendida();
+    	
+    }
     
+    public boolean confirmarDevolucion(String nombre) {
+    	Pieza p = ConsultarPieza(nombre);
+    	return p.isDevuelta();
+    	
+    }
 }
 

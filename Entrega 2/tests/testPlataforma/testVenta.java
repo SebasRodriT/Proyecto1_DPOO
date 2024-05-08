@@ -17,13 +17,14 @@ public class testVenta {
 	
 	private Artista mA = new Artista("Miguel Angel", "escultor");
 	private Escultura d = new Escultura(517, 198, 5660, false, false, "David", 1504, "Florencia", mA, true, "biblica", 1500000000);
-	private AdministradorGaleria admin = new AdministradorGaleria("Martin Castro",12846975,32);
 	private Comprador comprador1 = new Comprador("Felipe Martinez", 11576575, 28, "f.mar", "F123G", "3124256795", "f.mar@gmail.com", 900000000);
 	private Comprador comprador2 = new Comprador("Ana María Perez", 32546801, 34, "a.mariap", "AM34A", "3156781234", "ana.mariap@gmail.com",1000000000);
 	private Comprador comprador3 = new Comprador("Juan Rodríguez", 10694876, 45, "j.rod", "CR45R", "3175498765", "juan.rod@gmail.com", 1500000000);
 	private Comprador comprador4 = new Comprador("Lucía Fernández", 48577534, 29, "l.fernan", "LH29H", "3109876543", "lucia.fernan@gmail.com", 2000000000);
 	private Comprador comprador5 = new Comprador("Mario Pérez", 29683485, 38, "m.perez", "JP38P", "3123475689", "m.perez@gmail.com", 2100000000);
 	
+	//implementar fecha
+	//arreglar administrador 
 	@Test
 	public void venderPiezaFallo() throws Exception {
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();

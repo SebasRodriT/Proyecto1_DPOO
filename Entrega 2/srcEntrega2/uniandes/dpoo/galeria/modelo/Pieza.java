@@ -10,6 +10,7 @@ public class Pieza {
 	protected boolean exhibido;
 	protected String tematica;
 	protected String fecha;
+	protected boolean devuelta = false;
 
 	protected int precio;
 	
@@ -66,5 +67,16 @@ public class Pieza {
 
 	public void marcarComoDevolucion() {
 		vendida = false;
+		this.devuelta = true;
 	}
+
+	public boolean isDevuelta() {
+		return devuelta;
+	}
+
+	public String getFecha() {
+		return fecha;
+	}
+	
+	
 }

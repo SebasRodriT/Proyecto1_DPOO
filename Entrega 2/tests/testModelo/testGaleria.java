@@ -27,12 +27,13 @@ public class testGaleria {
     Pieza piezaExhibida = new Pieza(false, "La Mona Lisa", 1503, "Italia", artista,true, "Humanismo", 19890786);
     Pieza piezaEnBodega = new Pieza(false, "El Hombre de Vitruvio", 1490, "Italia", artista,true, "Humanismo", 17890786);
     Pieza piezaEnHistorico = new Pieza(false,"La Última Cena", 1495, "Italia", artista, true, "Religión", 15789000);
+    Galeria galeria = new Galeria("Italia", 130);
     
 	@Test
 	public void testVerificarCompradorExistente() {
 		Plataforma plataforma;
 		plataforma = Plataforma.obtenerInstancia();
-		boolean encontrado = Galeria.verificarComprador(compradorExistente);
+		boolean encontrado = galeria.verificarComprador(compradorExistente);
         assertTrue(encontrado, "El comprador existente debería haber sido encontrado"); 
 	}
 	
@@ -40,7 +41,7 @@ public class testGaleria {
 	void testCompradorNoExistente() {
         Plataforma plataforma;
         plataforma = Plataforma.obtenerInstancia();
-        boolean resultado = Galeria.verificarComprador(compradorNoExistente);
+        boolean resultado = galeria.verificarComprador(compradorNoExistente);
         assertFalse(resultado, "El comprador no existente no debería haber sido encontrado");
     }
 	

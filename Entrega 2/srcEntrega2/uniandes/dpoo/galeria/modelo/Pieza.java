@@ -11,6 +11,7 @@ public class Pieza {
 	protected String tematica;
 	protected String fecha;
 	protected boolean devuelta = false;
+	protected String dueño = "";
 
 	protected int precio;
 	
@@ -25,6 +26,7 @@ public class Pieza {
 		this.tematica = tematica;
 		this.precio = precio;
 		this.fecha = "No vendida";
+		
 
 	}
 
@@ -77,6 +79,16 @@ public class Pieza {
 	public String getFecha() {
 		return fecha;
 	}
+	
+	public void actualizarDueño(String nuevoDueño) {
+        this.dueño = nuevoDueño;
+    }
+
+	public String getDueño() {
+		return dueño;
+	}
+	
+	
 	
 	
 }

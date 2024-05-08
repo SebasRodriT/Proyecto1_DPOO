@@ -34,10 +34,12 @@ public class Plataforma {
     }
 	
 	
-	public void vender(Comprador comprador, Pieza pieza) throws Exception {
+	public void vender(Comprador comprador, Pieza pieza, String fecha) throws Exception {
 		if (comprador.getSaldo() >= pieza.getPrecio()) {
 			int precio = pieza.getPrecio();
 			Pago pago = new Pago(comprador, precio);
+			pieza.marcarComoVendida(fecha);
+			pieza.actualizarDueño(comprador.getNombre());
 		}
 		
 		else {
@@ -64,6 +66,7 @@ public class Plataforma {
 		Pago pago = new Pago(ganadorSubasta, mayor);
 		ganadorSubasta.agregarPieza(pieza);
 		pieza.marcarComoVendida(fecha);
+		pieza.actualizarDueño(ganadorSubasta.getNombre());
 		return ganadorSubasta;}
 	else {
 		throw new Exception ("Personas insuficientes para ejecutar la subasta");

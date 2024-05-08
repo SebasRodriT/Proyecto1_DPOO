@@ -51,7 +51,7 @@ public class AdministradorGaleria extends Empleado {
     public void confirmarVenta(Comprador comprador, Pieza pieza, String fecha) throws Exception {
        
         
-            plataforma.vender(comprador, pieza);
+            plataforma.vender(comprador, pieza, fecha);
             pieza.marcarComoVendida(fecha);
             inventario.remove(pieza);
             comprador.agregarPieza(pieza);

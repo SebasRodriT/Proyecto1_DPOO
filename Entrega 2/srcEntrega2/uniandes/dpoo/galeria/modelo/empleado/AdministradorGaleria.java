@@ -45,6 +45,7 @@ public class AdministradorGaleria extends Empleado {
 
     public void registrarPiezaInventario(Pieza pieza) {
         inventario.add(pieza);
+        inventarioGaleria.agregarPiezainventario(pieza);
     }
 
     public void confirmarVenta(Comprador comprador, Pieza pieza, String fecha) throws Exception {
@@ -157,7 +158,12 @@ public class AdministradorGaleria extends Empleado {
     	
     }
     
-    public boolean confirmarDevolucion(String nombre) {
+    public ArrayList<Pieza> getInventario() {
+		return inventario;
+	}
+
+
+	public boolean confirmarDevolucion(String nombre) {
     	Pieza p = ConsultarPieza(nombre);
     	return p.isDevuelta();
     	

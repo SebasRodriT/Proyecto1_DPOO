@@ -22,9 +22,8 @@ public class testVenta {
 	private Comprador comprador3 = new Comprador("Juan Rodríguez", 10694876, 45, "j.rod", "CR45R", "3175498765", "juan.rod@gmail.com", 1500000000);
 	private Comprador comprador4 = new Comprador("Lucía Fernández", 48577534, 29, "l.fernan", "LH29H", "3109876543", "lucia.fernan@gmail.com", 2000000000);
 	private Comprador comprador5 = new Comprador("Mario Pérez", 29683485, 38, "m.perez", "JP38P", "3123475689", "m.perez@gmail.com", 2100000000);
+	private AdministradorGaleria admin = AdministradorGaleria.obternerAdmin();
 	
-	//implementar fecha
-	//arreglar administrador 
 	@Test
 	public void venderPiezaFallo() throws Exception {
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -33,7 +32,7 @@ public class testVenta {
 		
 		admin.registrarPiezaInventario(d);
 		admin.verificarUsuario(comprador1);
-		comprador1.hacerOfertaVenta(d);
+		comprador1.hacerOfertaVenta(d, "08/05/2024");
 		String[] outputs = outputStream.toString().split(System.lineSeparator());
 		assertEquals("Oferta rechazada o inválida para la pieza: David por el comprador: Felipe Martinez", outputs[1].trim());
 		
@@ -44,7 +43,7 @@ public class testVenta {
 			admin.registrarPiezaInventario(d);
 			admin.verificarUsuario(comprador5);
 			comprador5.solicitarAumentoLimite();
-			comprador5.hacerOfertaVenta(d);
+			comprador5.hacerOfertaVenta(d, "08/05/2024");
 			assertEquals(1, comprador5.getPiezasCompradas().size());
 			assertEquals(true, d.isVendida());
 		}
@@ -55,7 +54,7 @@ public class testVenta {
 			admin.registrarPiezaInventario(d);
 			admin.verificarUsuario(comprador5);
 			comprador5.solicitarAumentoLimite();
-			comprador5.hacerOfertaVenta(d);
+			comprador5.hacerOfertaVenta(d, "08/05/2024");
 			comprador5.solicitarDevolucion(d);
 			assertEquals(0, comprador5.getPiezasCompradas().size());
 			assertEquals(false, d.isVendida());

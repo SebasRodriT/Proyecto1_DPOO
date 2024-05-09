@@ -13,7 +13,7 @@ import uniandes.dpoo.galeria.modelo.usuario.Usuario;
 
 public class Plataforma {
 	
-	private static Plataforma plataforma = new Plataforma();
+	private static Plataforma plataforma;
 	private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 	private RegistroSubasta subasta;
 	private RegistroVenta venta;

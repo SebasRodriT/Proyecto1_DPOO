@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import uniandes.dpoo.galeria.modelo.Pieza;
 import uniandes.dpoo.galeria.modelo.plataforma.Plataforma;
-import uniandes.dpoo.galeria.modelo.plataforma.Subasta;
+
 
 public class Usuario {
     protected String nombre;
@@ -14,7 +14,7 @@ public class Usuario {
     protected String nombreUsuario;
     protected String password;
     private String road;
-    private Subasta subasta = new Subasta();
+   
 
 
     public Usuario(String nombre, int identificacion, int edad, String nombreUsuario, String password, String road) {
@@ -48,15 +48,6 @@ public class Usuario {
     }
 
   
-   public void ofertarSubasta(Pieza pieza, Usuario usuario, int precio) {
-        
-       
-        
-        if (subasta != null && precio>=pieza.getPrecio()) {
-            subasta.agregarOfertaSubasta(usuario, precio, pieza);
-        }
-    }
-
 
     
 }

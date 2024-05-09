@@ -1,5 +1,4 @@
 package uniandes.dpoo.galeria.persistencia;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import org.json.JSONObject;
@@ -14,8 +13,9 @@ public class PersistenciaAdministradorGaleria {
     private static final String ARCHIVO_JSON = "administrador_galeria.json";
 
    
-    public static void guardarAdministrador(AdministradorGaleria administrador) throws IOException {
+    public static void guardarAdministrador() throws IOException {
         JSONObject jsonObject = new JSONObject();
+        AdministradorGaleria administrador = AdministradorGaleria.obternerAdmin();
 
        
         jsonObject.put("nombre", administrador.getNombre());
@@ -28,7 +28,7 @@ public class PersistenciaAdministradorGaleria {
             jsonPieza.put("tituloObra", pieza.getTituloObra());
             jsonPieza.put("precio", pieza.getPrecio());
             jsonPieza.put("vendida", pieza.isVendida());
-            jsonPieza.put("devuelta", pieza.isDevuelta());
+         
             
  
             jsonArray.put(jsonPieza);

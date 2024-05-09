@@ -51,7 +51,7 @@ public class AdministradorGaleria extends Empleado {
     public void confirmarVenta(Comprador comprador, Pieza pieza, String fecha) throws Exception {
        
         
-            plataforma.vender(comprador, pieza, fecha);
+    	plataforma.vender(comprador, pieza, fecha);
             pieza.marcarComoVendida(fecha);
             inventario.remove(pieza);
             comprador.agregarPieza(pieza);
@@ -123,7 +123,8 @@ public class AdministradorGaleria extends Empleado {
     
     //Requerimiento 3: Proyecto 2
     // Verificar Historia Comprador: Historia de piezas que ha comprado
-    public void historiaPiezasCompradas(Comprador comprador, String fecha) {
+    public void historiaPiezasCompradas(String nombre) {
+    	Comprador comprador = plataforma.encontrarComprador(nombre);
     	ArrayList<Pieza> piezas = comprador.getPiezasCompradas();
     	System.out.println("Nombre: " + comprador.getNombre());
     	System.out.println("Nombre Usuario: " + comprador.getNombreUsuario());
@@ -134,7 +135,8 @@ public class AdministradorGaleria extends Empleado {
     }
     
     //Verificar historia de coleeccion: Historia de piezas que posee
-    public void historiaPiezasColeccion(Comprador comprador, String fecha) {
+    public void historiaPiezasColeccion(String nombre) {
+    	Comprador comprador = plataforma.encontrarComprador(nombre);
     	ArrayList<Pieza> piezas = comprador.getPiezasCompradas();
     	System.out.println("Nombre: " + comprador.getNombre());
     	System.out.println("Nombre Usuario: " + comprador.getNombreUsuario());

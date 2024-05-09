@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import uniandes.dpoo.galeria.modelo.Artista;
 import uniandes.dpoo.galeria.modelo.Galeria;
 import uniandes.dpoo.galeria.modelo.Pieza;
-import uniandes.dpoo.galeria.modelo.plataforma.Plataforma;
 import uniandes.dpoo.galeria.modelo.usuario.Comprador;
 import uniandes.dpoo.galeria.modelo.usuario.Usuario;
 
@@ -31,16 +30,14 @@ public class testGaleria {
     
 	@Test
 	public void testVerificarCompradorExistente() {
-		Plataforma plataforma;
-		plataforma = Plataforma.obtenerInstancia();
+		
 		boolean encontrado = galeria.verificarComprador(compradorExistente);
         assertTrue(encontrado, "El comprador existente debería haber sido encontrado"); 
 	}
 	
 	@Test
 	void testCompradorNoExistente() {
-        Plataforma plataforma;
-        plataforma = Plataforma.obtenerInstancia();
+        
         boolean resultado = galeria.verificarComprador(compradorNoExistente);
         assertFalse(resultado, "El comprador no existente no debería haber sido encontrado");
     }

@@ -143,6 +143,7 @@ public class AdministradorGaleria extends Empleado {
     	for (int i = 0; i < piezas.size(); i++) {
             String elemento = piezas.get(i).getTituloObra();
             System.out.println("Titulo Obra:" + elemento);
+            System.out.println("Fecha de venta: "+ piezas.get(i).getFecha());
         }
     }
     
